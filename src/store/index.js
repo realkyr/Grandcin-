@@ -10,6 +10,7 @@ export default new Vuex.Store({
       isAuth: false,
       displayName: '',
       imgUrl: ''
-    }
+    },
+    movies: []
   }
 })

@@ -18,17 +18,17 @@ import 'firebase/firestore'
 
 export default {
   created: async function() {
-    this.movie = this.$store.state.movies.filter(
-      movie => movie.id === this.$route.params.id
-    )[0]
-    if (!this.movie) {
+    if (this.$store.state.movies.length === 0) {
       let db = firebase.firestore()
       let query = await db
         .collection('movies')
         .doc(this.id)
         .get()
       this.movie = query.data()
-      console.log(this.movie)
+    } else {
+      this.movie = this.$store.state.movies.filter(
+        movie => movie.id === this.$route.params.id
+      )[0]
     }
   },
   components: {
@@ -37,7 +37,10 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      movie: {}
+      movie: {
+        photoURL: '',
+        genres: []
+      }
     }
   },
   methods: {

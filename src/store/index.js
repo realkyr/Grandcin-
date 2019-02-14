@@ -11,6 +11,11 @@ export default new Vuex.Store({
       displayName: '',
       imgUrl: ''
     },
-    movies: []
+    movies: [],
+    query: {
+      movies: [],
+      places: { title: '' }
+    },
+    completeQuery: {}
   }
 })

@@ -6,6 +6,8 @@ import Register from '../assets/pages/Register'
 import Profile from '../assets/pages/Profile'
 import Movie from '../assets/pages/Movie'
 import Search from '../assets/pages/Search'
+import SeatSelect from '../assets/pages/SeatSelect'
+import Payment from '../assets/pages/Payment'
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +19,8 @@ export default new Router({
     { path: '/register', component: Register },
     { path: '/profile', component: Profile },
     { path: '/movie/:id', component: Movie },
-    { path: '/search', component: Search }
+    { path: '/search', component: Search },
+    { path: '/seat', component: SeatSelect },
+    { path: '/payment', component: Payment }
   ]
 })

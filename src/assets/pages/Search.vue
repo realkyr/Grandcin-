@@ -6,6 +6,7 @@
       Loading...<!-- implement loading here -->
     </b-container>
     <b-container v-if="isFinish">
+      {{ this.$store.state.query.places.title }}
       <b-row>
         <b-col :key="i" v-for="i in dayList()" cols="4">
           <button @click="query($event, i)">
@@ -17,10 +18,10 @@
           </button>
         </b-col>
       </b-row>
-      <div :key="theater.id" v-for="theater in Object.keys(movies)">
+      <div :key="movies[theater].id" v-for="theater in Object.keys(movies)">
         Theater {{ theater }} <br />
         <div
-          :key="combine(theater.id, title)"
+          :key="combine(movies[theater].id, title)"
           v-for="title in Object.keys(movies[theater].movies)"
         >
           <img
@@ -31,6 +32,20 @@
           <button
             :key="combine(theater.id, title, time)"
             v-for="time in Object.keys(movies[theater].movies[title].airTime)"
+            @click="
+              select(
+                {
+                  title: title,
+                  id: movies[theater].movies[title].id
+                },
+                {
+                  title: $store.state.query.places.title,
+                  id: $store.state.query.places.id
+                },
+                { title: theater, id: movies[theater].id },
+                time
+              )
+            "
           >
             {{ time }}
           </button>
@@ -52,7 +67,10 @@ export default {
   },
   data() {
     return {
-      isFinish: true
+      isFinish: true,
+      date: moment()
+        .tz('Asia/Bangkok')
+        .format('YYYYMMDD')
     }
   },
   methods: {
@@ -84,9 +102,16 @@ export default {
       ]
     },
     query(event, date) {
-      console.log(date)
       this.$refs.searchBar.search(event, date)
+      this.date = date
+    },
+    select(movie, place, theater, time, date = this.date) {
+      this.$store.state.showtime = { movie, place, theater, time, date }
+      this.$router.push('/seat')
     }
+  },
+  mounted() {
+    this.$refs.searchBar.search()
   },
   computed: {
     movies() {

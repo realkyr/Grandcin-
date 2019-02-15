@@ -16,6 +16,8 @@ export default new Vuex.Store({
       movies: [],
       places: { title: '' }
     },
-    completeQuery: {}
+    completeQuery: {},
+    showtime: {},
+    bookingInfo: {}
   }
 })

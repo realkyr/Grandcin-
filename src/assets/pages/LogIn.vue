@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <LogInForm />
+    <LogInForm @authChage="$router.push({ path: '/' })" />
   </div>
 </template>
 

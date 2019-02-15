@@ -41,7 +41,7 @@ export default {
         await firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
-        this.$router.push({ path: '/' })
+        this.$emit('authChange')
       } catch (error) {
         alert('Your e-mail or password might be wrong!')
         console.log(error)

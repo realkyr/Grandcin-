@@ -110,6 +110,7 @@ export default {
     },
     ticketClick(event, row, col) {
       // trigger when click a seat
+      let time = this.showtime.time
       if (this.haveOwner.includes(row + col)) {
         alert('ที่นั่งนี้มีคนจองแล้ว')
         return
@@ -119,7 +120,7 @@ export default {
         this.ticketBook = this.ticketBook.filter(
           ticket => ticket !== `${row}${col}`
         )
-        this.seatsMap[`${row}${col}`] = false
+        this.seatsMap[time][`${row}${col}`] = false
         this.$refs[`${row}${col}`][0].src = require('../pics/armchair.png')
         return
       }
@@ -128,18 +129,18 @@ export default {
         return
       } else if (this.ticketBook.length === ticketsAm) {
         let fTicket = this.ticketBook.shift()
-        this.seatsMap[fTicket] = false
+        this.seatsMap[time][fTicket] = false
         this.$refs[fTicket][0].src = require('../pics/armchair.png')
       }
       event.target.src = require('../pics/seatcheck.png')
       this.ticketBook.push(`${row}${col}`)
-      this.seatsMap[`${row}${col}`] = true
+      this.seatsMap[time][`${row}${col}`] = false
     },
     clear() {
       // clear the selected seat when adult or kid value are subtracted
+      let time = this.showtime.time
       this.ticketBook.forEach(ticket => {
-        console.log(this.seatsMap[ticket])
-        this.seatsMap[ticket] = false
+        this.seatsMap[time][ticket] = false
         this.$refs[ticket][0].src = require('../pics/armchair.png')
       })
       this.ticketBook = []
@@ -161,7 +162,7 @@ export default {
       this.$store.state.bookingInfo.ticketType.adult = this.adult
       this.$store.state.bookingInfo.ticketType.kid = this.kid
       this.$store.state.bookingInfo.seats = this.ticketBook
-      this.$store.state.bookingInfo.haveOwner = this.haveOwner
+      this.$store.state.bookingInfo.map = this.seatsMap
       if (confirm('Booking Confirm?')) {
         this.$router.push('/payment')
       }

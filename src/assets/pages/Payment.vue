@@ -51,7 +51,7 @@ export default {
       let db = firebase.firestore()
       let myTicket = { ...this.$store.state.bookingInfo }
       delete myTicket['haveOwner']
-
+      delete myTicket['map']
       await db
         .collection('users')
         .doc(this.$store.state.user.uid)
@@ -61,18 +61,7 @@ export default {
 
       // update this ticket to cinema profile
       let booking = {}
-      booking[bookingInfo.date] = {}
-      booking[bookingInfo.date][bookingInfo.time] = {}
-      console.log(bookingInfo)
-      bookingInfo.haveOwner.forEach(seat => {
-        booking[bookingInfo.date][bookingInfo.time][seat] = false
-      })
-      console.log(bookingInfo)
-
-      for (let el of bookingInfo.seats) {
-        booking[bookingInfo.date][bookingInfo.time][el] = false
-      }
-
+      booking[bookingInfo.date] = bookingInfo.map
       await db
         .collection('branch')
         .doc(bookingInfo.place.id)

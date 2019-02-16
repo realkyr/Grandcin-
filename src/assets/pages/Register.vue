@@ -78,6 +78,7 @@ export default {
   },
   methods: {
     onSubmit: async function(evt) {
+      // submit all data to firebase no validate yet
       evt.preventDefault()
       if (this.form.password !== this.form.confirmpassword) {
         alert('Error: Please type the same to confirm password')
@@ -102,6 +103,7 @@ export default {
       this.form = {}
     },
     setUpUser(user) {
+      // setup user in database Firestore
       let db = firebase.firestore()
       db.collection('users')
         .doc(user.uid)

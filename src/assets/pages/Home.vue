@@ -14,8 +14,8 @@
           @click="viewDescription(movie.id)"
         >
           <!-- 
-              this div contains element style it by change movieEl
-              class (it stands for movie element)
+              this div contains each movie element. style it by change
+              movieEl class (it stands for movie element)
             -->
           <img style="max-height: 250px" :src="movie.photoURL" />
           <br />
@@ -36,6 +36,7 @@ import 'firebase/firestore'
 
 export default {
   created: async function() {
+    // this function use to fetch movies from DB
     let moviesList = []
     let db = firebase.firestore()
     let query = await db.collection('movies').get()
@@ -45,6 +46,7 @@ export default {
       moviesList.push(movie)
     })
     this.$store.state.movies = moviesList
+    // store all data in Vuex store
   },
   components: {
     Navbar,
@@ -52,11 +54,13 @@ export default {
   },
   methods: {
     viewDescription(id) {
+      // when click div this function called and route to another page
       this.$router.push('/movie/' + id)
     }
   },
   computed: {
     uid() {
+      // get uid from store
       return this.$store.state.user.uid
     }
   }

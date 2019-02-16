@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     onLogIn: async function() {
+      // just login trigger event authChange when finish
       try {
         await firebase
           .auth()

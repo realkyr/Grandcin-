@@ -29,9 +29,10 @@
             :src="moviePhotoURL(movies[theater].movies[title].id)"
           />
           {{ title }}
-          <button
+          <b-button
             :key="combine(theater.id, title, time)"
             v-for="time in Object.keys(movies[theater].movies[title].airTime)"
+            :disabled="isTimePassed(time)"
             @click="
               select(
                 {
@@ -48,7 +49,7 @@
             "
           >
             {{ time }}
-          </button>
+          </b-button>
         </div>
       </div>
     </b-container>
@@ -70,20 +71,24 @@ export default {
       isFinish: true,
       date: moment()
         .tz('Asia/Bangkok')
-        .format('YYYYMMDD')
+        .format('YYYYMMDD') // return today as YEAR MONTH DAY format ex. 20191102
     }
   },
   methods: {
     initScreen() {
+      // call this when loading finish
       this.isFinish = true
     },
     loadingScreen() {
+      // call this when you want to load this page
       this.isFinish = false
     },
     combine(...text) {
+      // just joining text with ' ' space
       return text.join(' ')
     },
     moviePhotoURL(id) {
+      // find movie photo by id in Vuex
       return this.$store.state.movies.filter(mov => mov.id === id)[0].photoURL
     },
     dayList() {
@@ -99,18 +104,33 @@ export default {
           .add(2, 'days')
           .tz('Asia/Bangkok')
           .format('YYYYMMDD')
-      ]
+      ] // just create an array with 3 date today, tomorrow, the day after
     },
     query(event, date) {
+      // call function search in searchBar component to query today's movie
       this.$refs.searchBar.search(event, date)
       this.date = date
     },
     select(movie, place, theater, time, date = this.date) {
+      // when you select the time you want to watch
       this.$store.state.showtime = { movie, place, theater, time, date }
       this.$router.push('/seat')
+    },
+    isTimePassed(time) {
+      // validate each button if the time is passed you can't booking
+      // the movie which has a showtime in the past so return true if you can't press
+      // false otherwise
+      let today = moment().unix()
+      let schedule = moment(this.date + ' ' + time, 'YYYYMMDD kk:mm').unix()
+      console.log(this.date + ' ' + time)
+      if (today >= schedule) {
+        return true
+      }
+      return false
     }
   },
   mounted() {
+    // init search in Mounted(Vue.js Lifecycle) prevent this page from error
     this.$refs.searchBar.search()
   },
   computed: {

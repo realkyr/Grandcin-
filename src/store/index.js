@@ -17,7 +17,6 @@ export default new Vuex.Store({
       places: { title: '' }
     },
     completeQuery: {},
-    showtime: {},
-    bookingInfo: {}
+    showtime: {}
   }
 })

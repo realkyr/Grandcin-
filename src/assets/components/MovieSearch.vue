@@ -64,7 +64,7 @@ export default {
       places: {
         choices: [
           { title: 'Seacon GrandCiné', id: 'WFUoAjefnU4GpWLFfb2f' },
-          { title: 'Quatier GrandCiné', id: '' }
+          { title: 'Quatier GrandCiné', id: 'nyIIbxemgNtnKfYwu711' }
         ],
         select: ''
       },
@@ -88,6 +88,10 @@ export default {
       this.saveData()
       const moviesSchedule = {}
       let db = firebase.firestore()
+      if (!this.$store.state.query.places) {
+        this.$emit('finish')
+        return
+      }
       let place = this.$store.state.query.places.id
       let theaterList = await this.getTheater(db, place)
       for (const thea of Object.keys(theaterList)) {
@@ -131,6 +135,7 @@ export default {
       this.$store.state.query.places = this.places.choices.filter(
         ch => ch.title === this.places.select
       )[0]
+      console.log(this.$store.state.query.places)
     },
     async getTheater(db, id) {
       let ref = db

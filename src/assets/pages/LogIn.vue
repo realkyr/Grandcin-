@@ -2,6 +2,10 @@
   <div>
     <Navbar />
     <LogInForm @authChage="$router.push({ path: '/' })" />
+    <!-- on authChange is event listener 
+      there is a function in login form component will trigger this
+      event after user login
+     -->
   </div>
 </template>
 

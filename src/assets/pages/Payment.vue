@@ -4,6 +4,7 @@
     <div v-if="!isAuth">
       ต้อง log in ก่อนเพื่อทำการจ่ายเงิน
       <LogInForm />
+      <!-- use log in form component -->
     </div>
     <div v-else>
       {{ $store.state.bookingInfo }}
@@ -18,7 +19,8 @@
       </b-button>
       <b-button @click="finish">
         finish
-        <!-- this is just dummy use after payment -->
+        <!-- this is just dummy use after payment,
+              you can copy this function to use at another page -->
       </b-button>
     </div>
   </div>
@@ -32,6 +34,7 @@ import 'firebase/firestore'
 
 export default {
   created() {
+    // if no ticket booking data this page will be useless so route to home page
     let store = this.$store.state.bookingInfo
     if (Object.keys(store).length === 0 && store.constructor === Object) {
       this.$router.push('/')
@@ -44,39 +47,46 @@ export default {
   methods: {
     async finish() {
       // update this ticket to user profile
+      let bookingInfo = this.$store.state.bookingInfo
       let db = firebase.firestore()
+      let myTicket = { ...this.$store.state.bookingInfo }
+      delete myTicket['haveOwner']
+
       await db
         .collection('users')
         .doc(this.$store.state.user.uid)
         .collection('tickets')
-        .add(this.$store.state.bookingInfo)
+        .add(myTicket)
+      console.log(bookingInfo)
 
-      // updatet this ticket to cinema profile
-      let doc = await db
-        .collection('branch')
-        .doc(this.$store.state.bookingInfo.place.id)
-        .collection('theater')
-        .doc(this.$store.state.bookingInfo.theater.id)
-        .collection('schedule')
-        .doc(this.$store.state.bookingInfo.movie.id)
-        .get()
-      let booking = doc.data()
-      for (let el of this.$store.state.bookingInfo.seats) {
-        let bookingInfo = this.$store.state.bookingInfo
+      // update this ticket to cinema profile
+      let booking = {}
+      booking[bookingInfo.date] = {}
+      booking[bookingInfo.date][bookingInfo.time] = {}
+      console.log(bookingInfo)
+      bookingInfo.haveOwner.forEach(seat => {
+        booking[bookingInfo.date][bookingInfo.time][seat] = false
+      })
+      console.log(bookingInfo)
+
+      for (let el of bookingInfo.seats) {
         booking[bookingInfo.date][bookingInfo.time][el] = false
-        await db
-          .collection('branch')
-          .doc(this.$store.state.bookingInfo.place.id)
-          .collection('theater')
-          .doc(this.$store.state.bookingInfo.theater.id)
-          .collection('schedule')
-          .doc(this.$store.state.bookingInfo.movie.id)
-          .update(booking)
       }
+
+      await db
+        .collection('branch')
+        .doc(bookingInfo.place.id)
+        .collection('theater')
+        .doc(bookingInfo.theater.id)
+        .collection('schedule')
+        .doc(bookingInfo.movie.id)
+        .update(booking)
+      this.$router.push('/profile')
     }
   },
   computed: {
     isAuth() {
+      // check is user log in or not
       return this.$store.state.user.uid !== ''
     }
   }

@@ -122,7 +122,6 @@ export default {
       // false otherwise
       let today = moment().unix()
       let schedule = moment(this.date + ' ' + time, 'YYYYMMDD kk:mm').unix()
-      console.log(this.date + ' ' + time)
       if (today >= schedule) {
         return true
       }

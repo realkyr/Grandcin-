@@ -180,13 +180,13 @@ export default {
     // if it is less than previous value clear all the selected seat
     kid: function(newValue, oldValue) {
       let diff = parseInt(newValue) - parseInt(oldValue)
-      if (diff < 0) {
+      if (diff < 0 || isNaN(diff)) {
         this.clear()
       }
     },
     adult: function(newValue, oldValue) {
       let diff = parseInt(newValue) - parseInt(oldValue)
-      if (diff < 0) {
+      if (diff < 0 || isNaN(diff)) {
         this.clear()
       }
     }

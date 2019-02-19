@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar />
-    <MovieSearch />
+    <!-- <MovieSearch /> -->
     <b-container>
       <b-row>
         <b-col
@@ -17,7 +17,7 @@
               this div contains each movie element. style it by change
               movieEl class (it stands for movie element)
             -->
-          <img style="max-height: 250px" :src="movie.photoURL" />
+          <img style="max-height: 250px" class="mx-auto d-block" :src="movie.photoURL" />
           <br />
           {{ movie.title }} ({{ movie.year }}) <br />
           {{ movie['genres'].join(', ') }} <br />
@@ -71,5 +71,11 @@ export default {
 .movieEl:hover {
   color: white;
   background: tomato;
+}
+.movieEl img {
+  align-items: center;
+}
+.main {
+  background-color: gray;
 }
 </style>

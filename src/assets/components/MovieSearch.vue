@@ -1,23 +1,24 @@
 <template>
   <div>
-    <b-container fluid>
-      <b-row>
-        <b-col cols="1">สถานที่ :</b-col>
-        <b-col cols="4">
+    <b-container>
+      <b-row align-v="center">
+        <b-col cols="0" class="col-sm-0 text-warning">สถานที่ :</b-col>
+        <b-col cols="3">
           <b-form-select
+          class="text-warning"
             id="PlaceSelector"
             v-model="places.select"
             :options="places.choices.map(el => el.title)"
           />
         </b-col>
-        <b-col cols="1">หนัง :</b-col>
-        <b-col cols="4">
+        <b-col cols="0" class="text-warning">หนัง :</b-col>
+        <b-col cols="3">
           <div
             size="sm"
             variant="outline-success"
             id="MovieSelector"
             @click="setVisibility('visible')"
-            class="movies-select-tap"
+            class="movies-select-tap align-middle text-warning"
           >
             {{
               movies.select == []
@@ -27,7 +28,7 @@
           </div>
         </b-col>
         <b-col cols="2">
-          <b-button @click="search" variant="outline-success">Search</b-button>
+          <b-button @click="search" style="margin-left:100px" variant="outline-warning">Search</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -164,7 +165,7 @@ export default {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   display: inline-block;
-  width: 100%;
+  width: 250px;
   height: calc(2.25rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   overflow: hidden;

@@ -2,7 +2,7 @@
   <div
     v-click-outside="closeEvent"
     :style="{ visibility: visible }"
-    class="movie-selector"
+    class="movie-selector bg-inverse text-warning"
   >
     <div class="scrollView">
       <div
@@ -90,7 +90,7 @@ export default {
   position: absolute;
   background: white;
   padding: 0.5em;
-  right: 10em;
+  right: 30em;
   width: 500px;
   height: 400px;
   border-radius: 15px;
@@ -124,7 +124,7 @@ export default {
 }
 
 .choice:hover {
-  background: lightpink;
+  background: black;
 }
 
 .selected {
@@ -132,6 +132,6 @@ export default {
 }
 
 .choice img {
-  max-width: 50px;
+  max-width: 100px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" />
+    <!-- <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" /> -->
     <b-container v-if="!isFinish">
       Loading...<!-- implement loading here -->
     </b-container>

@@ -5,7 +5,7 @@
     <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
 
     <div>
-      <MovieSearch class="ml-5"/>
+      <MovieSearch ref="movieSearch" class="ml-5"/>
     </div>
 
     <b-collapse id="nav_collapse" is-nav>
@@ -36,6 +36,9 @@ export default {
     MovieSearch
   },
   methods: {
+    search(date) {
+      this.$refs.movieSearch.search(event, date)
+    },
     LogOut() {
       firebase
         .auth()

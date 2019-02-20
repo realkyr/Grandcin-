@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar />
-    <!-- <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" /> -->
+    <Navbar ref="nav"/>
+    <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" />
     <b-container v-if="!isFinish">
       Loading...<!-- implement loading here -->
     </b-container>
@@ -108,7 +108,7 @@ export default {
     },
     query(event, date) {
       // call function search in searchBar component to query today's movie
-      this.$refs.searchBar.search(event, date)
+      this.$refs.nav.search(event, date)
       this.date = date
     },
     select(movie, place, theater, time, date = this.date) {

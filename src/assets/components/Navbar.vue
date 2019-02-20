@@ -1,10 +1,21 @@
 <template>
   <b-navbar toggleable="md" class="myNav">
     <b-navbar-toggle target="nav_collapse" />
-    <b-button variant="black" @click.prevent="" style="font-size:2rem;" class="text-warning mr-4">&#9776;</b-button>
+    <b-button
+      variant="black"
+      @click.prevent=""
+      style="font-size:2rem;"
+      class="text-warning mr-4"
+      >&#9776;</b-button
+    >
     <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
     <div>
-      <MovieSearch ref="movieSearch" class="ml-5" @load="loadingScreen" @finish="initScreen"/>
+      <MovieSearch
+        ref="movieSearch"
+        class="ml-5"
+        @load="loadingScreen"
+        @finish="initScreen"
+      />
     </div>
 
     <!-- <div class="vld-parent">
@@ -25,7 +36,9 @@
           <b-dropdown-item to="/profile">Profile</b-dropdown-item>
           <b-dropdown-item @click="LogOut">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
-        <b-nav-item to="login" v-else><a class="text-warning">Log In</a></b-nav-item>
+        <b-nav-item to="login" v-else>
+          <a class="text-warning">Log In</a>
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -37,15 +50,9 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import MovieSearch from './MovieSearch.vue'
 
-// Import component loading
-import Loading from 'vue-loading-overlay';
-// Import stylesheet loading
-import 'vue-loading-overlay/dist/vue-loading.css';
-
 export default {
   components: {
-    MovieSearch,
-    Loading
+    MovieSearch
   },
   data() {
     return {
@@ -57,67 +64,16 @@ export default {
     }
   },
   methods: {
-    doAjax() {
-      this.isLoading = true;
-      // simulate AJAX
-      setTimeout(() => {
-      this.isLoading = false
-      },5000)
-    },
-    search(date) {
+    search(event, date) {
       this.$refs.movieSearch.search(event, date)
     },
-    // async search(
-    //   value,
-    //   date = moment()
-    //     .tz('Asia/Bangkok')
-    //     .format('YYYYMMDD')
-    // ) {
-    //   this.$emit('load')
-    //   this.saveData()
-    //   const moviesSchedule = {}
-    //   let db = firebase.firestore()
-    //   if (!this.$store.state.query.places) {
-    //     this.$emit('finish')
-    //     return
-    //   }
-    //   let place = this.$store.state.query.places.id
-    //   let theaterList = await this.getTheater(db, place)
-    //   for (const thea of Object.keys(theaterList)) {
-    //     for (const mov of this.$store.state.query.movies) {
-    //       let ref = db
-    //         .collection('branch')
-    //         .doc(place)
-    //         .collection('theater')
-    //         .doc(thea)
-    //         .collection('schedule')
-    //         .doc(mov.id)
-    //       let schedule = await ref.get()
-    //       let daySchedule = this.schedule(date, schedule.data())
-    //       if (daySchedule) {
-    //         let name = theaterList[thea].name
-    //         if (!moviesSchedule[name]) {
-    //           moviesSchedule[name] = {}
-    //           moviesSchedule[name].movies = {}
-    //           moviesSchedule[name].id = thea
-    //         }
-    //         moviesSchedule[name].movies[mov.title] = {}
-    //         moviesSchedule[name].movies[mov.title].airTime = daySchedule
-    //         moviesSchedule[name].movies[mov.title].id = mov.id
-    //       }
-    //     }
-    //   }
-    //   this.$store.state.completeQuery = moviesSchedule
-    //   this.$emit('finish')
-    //   this.$router.push('/search')
-    // },
     initScreen() {
       // call this when loading finish
-      this.isFinish = true
+      this.$emit('finish')
     },
     loadingScreen() {
       // call this when you want to load this page
-      this.isFinish = false
+      this.$emit('loading')
     },
     LogOut() {
       firebase
@@ -153,4 +109,3 @@ export default {
   background-color: black;
 }
 </style>
-

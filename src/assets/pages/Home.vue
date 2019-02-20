@@ -16,7 +16,11 @@
               this div contains each movie element. style it by change
               movieEl class (it stands for movie element)
             -->
-          <img style="max-height: 250px" class="mx-auto d-block" :src="movie.photoURL" />
+          <img
+            style="max-height: 250px"
+            class="mx-auto d-block"
+            :src="movie.photoURL"
+          />
           <br />
           {{ movie.title }} ({{ movie.year }}) <br />
           {{ movie['genres'].join(', ') }} <br />
@@ -33,9 +37,9 @@ import MovieSearch from '../components/MovieSearch.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 // Import component
-  import Loading from 'vue-loading-overlay';
+import Loading from 'vue-loading-overlay'
 // Import stylesheet
-  import 'vue-loading-overlay/dist/vue-loading.css';
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 export default {
   created: async function() {

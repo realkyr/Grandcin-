@@ -7,7 +7,7 @@
       {{ showtime.place.title }}
       {{ showtime.time }}
       <div v-if="!isFinish">
-        Loading
+        <Loading :active="!isFinish" :is-full-page="true" />
         <!-- Implement loading here -->
       </div>
       <div v-else>
@@ -46,10 +46,13 @@
 import Navbar from '../components/Navbar'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Loading
   },
   async created() {
     // if no booking data route to Home
@@ -120,7 +123,7 @@ export default {
         this.ticketBook = this.ticketBook.filter(
           ticket => ticket !== `${row}${col}`
         )
-        this.seatsMap[time][`${row}${col}`] = false
+        delete this.seatsMap[time][`${row}${col}`]
         this.$refs[`${row}${col}`][0].src = require('../pics/armchair.png')
         return
       }
@@ -129,7 +132,7 @@ export default {
         return
       } else if (this.ticketBook.length === ticketsAm) {
         let fTicket = this.ticketBook.shift()
-        this.seatsMap[time][fTicket] = false
+        delete this.seatsMap[time][fTicket]
         this.$refs[fTicket][0].src = require('../pics/armchair.png')
       }
       event.target.src = require('../pics/seatcheck.png')
@@ -140,7 +143,7 @@ export default {
       // clear the selected seat when adult or kid value are subtracted
       let time = this.showtime.time
       this.ticketBook.forEach(ticket => {
-        this.seatsMap[time][ticket] = false
+        delete this.seatsMap[time][ticket]
         this.$refs[ticket][0].src = require('../pics/armchair.png')
       })
       this.ticketBook = []

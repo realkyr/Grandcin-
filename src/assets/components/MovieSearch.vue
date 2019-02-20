@@ -10,7 +10,7 @@
         <b-col cols="0" class="col-sm-0 text-warning">สถานที่ :</b-col>
         <b-col cols="4">
           <b-form-select
-          class="text-warning"
+            class="text-warning"
             id="PlaceSelector"
             v-model="places.select"
             :options="places.choices.map(el => el.title)"
@@ -33,7 +33,9 @@
           </div>
         </b-col>
         <b-col cols="2">
-          <b-button @click="search" class="ml-3" variant="outline-warning">Search</b-button>
+          <b-button @click="search" class="ml-3" variant="outline-warning">
+            Search
+          </b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -54,19 +56,13 @@ import MovieSelector from '../components/MovieSelector.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-// Import component loading
-import Loading from 'vue-loading-overlay';
-// Import stylesheet loading
-import 'vue-loading-overlay/dist/vue-loading.css';
-
 export default {
   created() {
     this.movies.select = this.$store.state.query.movies
     this.places.select = this.$store.state.query.places.title
   },
   components: {
-    MovieSelector,
-    Loading
+    MovieSelector
   },
   data() {
     return {
@@ -86,11 +82,11 @@ export default {
   },
   methods: {
     doAjax() {
-      this.isLoading = true;
+      this.isLoading = true
       // simulate AJAX
       setTimeout(() => {
-      this.isLoading = false
-      },5000)
+        this.isLoading = false
+      }, 5000)
     },
     setVisibility(status) {
       this.visible = status
@@ -139,6 +135,7 @@ export default {
         }
       }
       this.$store.state.completeQuery = moviesSchedule
+      console.log(moviesSchedule)
       this.$emit('finish')
       this.$router.push('/search')
     },

@@ -1,21 +1,22 @@
 <template>
   <div>
-    <Navbar ref="nav"/>
-    <!-- <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" /> -->
+    <Navbar ref="nav" @loading="loadingScreen" @finish="initScreen" />
     <b-container v-if="!isFinish">
-      Loading...<!-- implement loading here -->
+      <Loading :active="!isFinish" :is-full-page="true" />
+      <!-- loading ... -->
+      <!-- implement loading here -->
     </b-container>
     <b-container v-if="isFinish">
       {{ this.$store.state.query.places.title }}
       <b-row>
         <b-col :key="i" v-for="i in dayList()" cols="4">
-          <button @click="query($event, i)">
+          <b-button @click="query($event, i)">
             {{ i }}
             <!-- 
               if you want to change date format change it here 
               use in-line methods
             -->
-          </button>
+          </b-button>
         </b-col>
       </b-row>
       <div :key="movies[theater].id" v-for="theater in Object.keys(movies)">
@@ -60,11 +61,14 @@
 import Navbar from '../components/Navbar.vue'
 import MovieSearch from '../components/MovieSearch.vue'
 import moment from 'moment'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 export default {
   components: {
     Navbar,
-    MovieSearch
+    MovieSearch,
+    Loading
   },
   data() {
     return {

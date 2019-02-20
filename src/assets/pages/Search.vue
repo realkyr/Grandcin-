@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar ref="nav"/>
-    <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" />
+    <!-- <MovieSearch ref="searchBar" @load="loadingScreen" @finish="initScreen" /> -->
     <b-container v-if="!isFinish">
       Loading...<!-- implement loading here -->
     </b-container>
@@ -130,7 +130,7 @@ export default {
   },
   mounted() {
     // init search in Mounted(Vue.js Lifecycle) prevent this page from error
-    this.$refs.searchBar.search()
+    this.$refs.nav.search()
   },
   computed: {
     movies() {

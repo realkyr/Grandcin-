@@ -1,12 +1,17 @@
 <template>
   <b-navbar toggleable="md" class="myNav">
     <b-navbar-toggle target="nav_collapse" />
-
+    <b-button variant="black" @click.prevent="" style="font-size:2rem;" class="text-warning mr-4">&#9776;</b-button>
     <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
-
     <div>
-      <MovieSearch ref="movieSearch" class="ml-5"/>
+      <MovieSearch ref="movieSearch" class="ml-5" @load="loadingScreen" @finish="initScreen"/>
     </div>
+
+    <!-- <div class="vld-parent">
+        <loading :active.sync="isLoading" 
+        :can-cancel="true" 
+        :is-full-page="fullPage"></loading>
+    </div> -->
 
     <b-collapse id="nav_collapse" is-nav>
       <!-- Right aligned nav items -->
@@ -27,17 +32,92 @@
 </template>
 
 <script>
+import moment from 'moment-timezone'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import MovieSearch from './MovieSearch.vue'
 
+// Import component loading
+import Loading from 'vue-loading-overlay';
+// Import stylesheet loading
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 export default {
   components: {
-    MovieSearch
+    MovieSearch,
+    Loading
+  },
+  data() {
+    return {
+      isLoading: false,
+      isFinish: true,
+      date: moment()
+        .tz('Asia/Bangkok')
+        .format('YYYYMMDD') // return today as YEAR MONTH DAY format ex. 20191102
+    }
   },
   methods: {
+    doAjax() {
+      this.isLoading = true;
+      // simulate AJAX
+      setTimeout(() => {
+      this.isLoading = false
+      },5000)
+    },
     search(date) {
       this.$refs.movieSearch.search(event, date)
+    },
+    // async search(
+    //   value,
+    //   date = moment()
+    //     .tz('Asia/Bangkok')
+    //     .format('YYYYMMDD')
+    // ) {
+    //   this.$emit('load')
+    //   this.saveData()
+    //   const moviesSchedule = {}
+    //   let db = firebase.firestore()
+    //   if (!this.$store.state.query.places) {
+    //     this.$emit('finish')
+    //     return
+    //   }
+    //   let place = this.$store.state.query.places.id
+    //   let theaterList = await this.getTheater(db, place)
+    //   for (const thea of Object.keys(theaterList)) {
+    //     for (const mov of this.$store.state.query.movies) {
+    //       let ref = db
+    //         .collection('branch')
+    //         .doc(place)
+    //         .collection('theater')
+    //         .doc(thea)
+    //         .collection('schedule')
+    //         .doc(mov.id)
+    //       let schedule = await ref.get()
+    //       let daySchedule = this.schedule(date, schedule.data())
+    //       if (daySchedule) {
+    //         let name = theaterList[thea].name
+    //         if (!moviesSchedule[name]) {
+    //           moviesSchedule[name] = {}
+    //           moviesSchedule[name].movies = {}
+    //           moviesSchedule[name].id = thea
+    //         }
+    //         moviesSchedule[name].movies[mov.title] = {}
+    //         moviesSchedule[name].movies[mov.title].airTime = daySchedule
+    //         moviesSchedule[name].movies[mov.title].id = mov.id
+    //       }
+    //     }
+    //   }
+    //   this.$store.state.completeQuery = moviesSchedule
+    //   this.$emit('finish')
+    //   this.$router.push('/search')
+    // },
+    initScreen() {
+      // call this when loading finish
+      this.isFinish = true
+    },
+    loadingScreen() {
+      // call this when you want to load this page
+      this.isFinish = false
     },
     LogOut() {
       firebase

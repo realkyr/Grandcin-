@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <Navbar />
-    <!-- <MovieSearch /> -->
     <b-container>
       <b-row>
         <b-col
@@ -33,6 +32,10 @@ import Navbar from '../components/Navbar.vue'
 import MovieSearch from '../components/MovieSearch.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+// Import component
+  import Loading from 'vue-loading-overlay';
+// Import stylesheet
+  import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   created: async function() {
@@ -50,7 +53,8 @@ export default {
   },
   components: {
     Navbar,
-    MovieSearch
+    MovieSearch,
+    Loading
   },
   methods: {
     viewDescription(id) {

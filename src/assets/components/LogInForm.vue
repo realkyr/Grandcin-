@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-form inline>
+    <div class="form-group">
+    <b-form> <!-- inline -->
       <label class="sr-only" for="inlineFormInputName2">Name</label>
       <b-input
         v-model="email"
@@ -22,6 +23,7 @@
       </p>
       <b-button @click="onLogIn" variant="primary">Log In</b-button>
     </b-form>
+    </div>
   </div>
 </template>
 
@@ -51,3 +53,8 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>
+

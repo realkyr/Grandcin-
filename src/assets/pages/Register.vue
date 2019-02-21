@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar />
     <b-container>
       <b-form @submit="onSubmit" @reset="onReset">
@@ -119,3 +119,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.main {
+  background-color: white;
+}
+</style>

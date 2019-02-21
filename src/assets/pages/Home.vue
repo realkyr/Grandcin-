@@ -23,9 +23,9 @@
             :src="movie.photoURL"
           />
           <br />
-          {{ movie.title }} ({{ movie.year }}) <br />
-          {{ movie['genres'].join(', ') }} <br />
-          length: {{ movie.length }}
+          <b>Title : </b>{{ movie.title }} <b>({{ movie.year }})</b> <br />
+          <b>Genres : </b> {{ movie['genres'].join(', ') }} <br />
+          <b>Length : </b> {{ movie.length }}
         </b-col>
       </b-row>
     </b-container>
@@ -83,10 +83,20 @@ export default {
   color: white;
   background: rgb(255,204,0);
 }
-.movieEl img {
-  align-items: center;
-}
+
 .movieEl {
+  align-items: center;
+  background-color: #BBBBBB;
+  border: 2px rgb(255,204,0) solid;
+  border-radius: 5px;
+  margin-left: 25px;
+  margin-top: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.movieEl img {
+  /* align-items: center; */
+  border: 2px rgb(255,204,0) solid;
   border-radius: 5px;
 }
 .main {

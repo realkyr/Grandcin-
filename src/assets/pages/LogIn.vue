@@ -1,11 +1,17 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar />
-    <LogInForm @authChage="$router.push({ path: '/' })" />
-    <!-- on authChange is event listener 
-      there is a function in login form component will trigger this
-      event after user login
-     -->
+    <b-container>
+      <b-row>
+        <b-col cols="12" sm="6" md="3">
+          <LogInForm @authChage="$router.push({ path: '/' })" />
+            <!-- on authChange is event listener 
+            there is a function in login form component will trigger this
+            event after user login
+            -->
+        </b-col>
+      </b-row>
+     </b-container>
   </div>
 </template>
 
@@ -20,3 +26,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+b-row {
+  align-content: center;
+}
+.main {
+  background-color: white;
+}
+</style>

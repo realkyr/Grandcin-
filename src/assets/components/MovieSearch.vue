@@ -1,29 +1,24 @@
 <template>
   <div>
-    <!-- <div class="vld-parent">
-        <loading :active.sync="isLoading" 
-        :can-cancel="true" 
-        :is-full-page="fullPage"></loading>
-    </div> -->
     <b-container>
       <b-row align-v="center">
-        <b-col cols="0" class="col-sm-0 text-warning">สถานที่ :</b-col>
+        <b-col cols="0" class="col-sm-0 ml-auto text-warning">สถานที่ :</b-col>
         <b-col cols="4">
           <b-form-select
-            class="text-warning"
+            class=""
             id="PlaceSelector"
             v-model="places.select"
             :options="places.choices.map(el => el.title)"
           />
         </b-col>
-        <b-col cols="0" class="text-warning">หนัง :</b-col>
+        <b-col cols="0" class="col-sm-0 text-warning">หนัง :</b-col>
         <b-col cols="4">
           <div
             size="sm"
             variant="outline-success"
             id="MovieSelector"
             @click="setVisibility('visible')"
-            class="col-sm-12 movies-select-tap align-middle text-warning"
+            class="col-sm-12 movies-select-tap align-middle"
           >
             {{
               movies.select == []
@@ -32,8 +27,8 @@
             }}
           </div>
         </b-col>
-        <b-col cols="2">
-          <b-button @click="search" class="ml-3" variant="outline-warning">
+        <b-col cols="0">
+          <b-button @click="search" class="ml-auto" variant="outline-warning">
             Search
           </b-button>
         </b-col>
@@ -81,13 +76,6 @@ export default {
     }
   },
   methods: {
-    doAjax() {
-      this.isLoading = true
-      // simulate AJAX
-      setTimeout(() => {
-        this.isLoading = false
-      }, 5000)
-    },
     setVisibility(status) {
       this.visible = status
     },
@@ -177,8 +165,9 @@ export default {
 
 <style scoped>
 .movies-select-tap {
+  background-color: white;
   border-style: solid;
-  border: 1px solid #ced4da;
+  border: 0px solid #ced4da;
   border-radius: 0.25rem;
   display: inline-block;
   width: 250px;

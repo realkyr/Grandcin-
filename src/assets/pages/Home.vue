@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <Navbar />
+    <Carousel class="mb-3"/>
     <b-container>
       <b-row>
         <b-col
@@ -9,7 +10,7 @@
           md="3"
           :key="movie.id"
           v-for="movie in $store.state.movies"
-          class="movieEl"
+          class="movieEl text-center mb-4 pt-3"
           @click="viewDescription(movie.id)"
         >
           <!-- 
@@ -36,6 +37,7 @@ import Navbar from '../components/Navbar.vue'
 import MovieSearch from '../components/MovieSearch.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import Carousel from '../components/Carousel.vue'
 // Import component
 import Loading from 'vue-loading-overlay'
 // Import stylesheet
@@ -58,7 +60,8 @@ export default {
   components: {
     Navbar,
     MovieSearch,
-    Loading
+    Loading,
+    Carousel
   },
   methods: {
     viewDescription(id) {
@@ -78,12 +81,15 @@ export default {
 <style scoped>
 .movieEl:hover {
   color: white;
-  background: tomato;
+  background: rgb(255,204,0);
 }
 .movieEl img {
   align-items: center;
 }
+.movieEl {
+  border-radius: 5px;
+}
 .main {
-  background-color: gray;
+  background-color: white;
 }
 </style>

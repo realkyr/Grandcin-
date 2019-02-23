@@ -6,54 +6,93 @@
       <!-- loading ... -->
       <!-- implement loading here -->
     </b-container>
-    <b-container v-if="isFinish">
-      {{ this.$store.state.query.places.title }}
-      <b-row>
-        <b-col :key="i" v-for="i in dayList()" cols="4">
-          <b-button @click="query($event, i)">
-            {{ i }}
-            <!-- 
-              if you want to change date format change it here 
-              use in-line methods
-            -->
-          </b-button>
-        </b-col>
-      </b-row>
-      <div :key="movies[theater].id" v-for="theater in Object.keys(movies)">
-        Theater {{ theater }} <br />
-        <div
-          :key="combine(movies[theater].id, title)"
-          v-for="title in Object.keys(movies[theater].movies)"
-        >
-          <img
-            style="max-width: 100px"
-            :src="moviePhotoURL(movies[theater].movies[title].id)"
-          />
-          {{ title }}
-          <b-button
-            :key="combine(theater.id, title, time)"
-            v-for="time in Object.keys(movies[theater].movies[title].airTime)"
-            :disabled="isTimePassed(time)"
-            @click="
-              select(
-                {
-                  title: title,
-                  id: movies[theater].movies[title].id
-                },
-                {
-                  title: $store.state.query.places.title,
-                  id: $store.state.query.places.id
-                },
-                { title: theater, id: movies[theater].id },
-                time
-              )
-            "
+    <div class="test shadow mt-5 p-2">
+      <b-container v-if="isFinish">
+        <!-- {{ this.$store.state.query.places.title }} -->
+        <b-row align-v="center" class="justify-content-around mx-auto">
+          <b-col :key="i" v-for="i in dayList()" cols="3">
+            <b-button variant="outline-warning" @click="query($event, i)">
+              {{ i }}
+              <!-- 
+                if you want to change date format change it here 
+                use in-line methods
+              -->
+            </b-button>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+    <div class="book_branch shadow">
+      <div class="text-warning h2 pt-2 pl-4"> {{ this.$store.state.query.places.title }} </div>
+    </div>
+    <div class="book_row" :key="movies[theater].id" v-for="theater in Object.keys(movies)">
+      <div class="book_right">
+        <div class="book_theatre_no">
+          Theatre {{ theater }} <br />
+          <!-- <div
+            :key="combine(movies[theater].id, title)"
+            v-for="title in Object.keys(movies[theater].movies)"
           >
-            {{ time }}
-          </b-button>
+            <img
+              style="max-width: 100px"
+              :src="moviePhotoURL(movies[theater].movies[title].id)"
+            />
+            {{ title }}
+            <b-button
+              :key="combine(theater.id, title, time)"
+              v-for="time in Object.keys(movies[theater].movies[title].airTime)"
+              :disabled="isTimePassed(time)"
+              @click="
+                select(
+                  {
+                    title: title,
+                    id: movies[theater].movies[title].id
+                  },
+                  {
+                    title: $store.state.query.places.title,
+                    id: $store.state.query.places.id
+                  },
+                  { title: theater, id: movies[theater].id },
+                  time
+                )
+              "
+            >
+              {{ time }}
+            </b-button>
+          </div> -->
         </div>
       </div>
-    </b-container>
+      <div class="book_left" :key="combine(movies[theater].id, title)"
+            v-for="title in Object.keys(movies[theater].movies)">
+        <img style="max-width: 120px" :src="moviePhotoURL(movies[theater].movies[title].id)"/>
+        <div class="book_desc">
+          <div class="book_title"><h3>{{ title }}  | </h3> {{ movies[theater].movies[genres] }}</div>
+          <div class="book_time mt-5 ml-5">
+            <b-button
+              :key="combine(theater.id, title, time)"
+              v-for="time in Object.keys(movies[theater].movies[title].airTime)"
+              :disabled="isTimePassed(time)"
+              @click="
+                select(
+                  {
+                    title: title,
+                    id: movies[theater].movies[title].id
+                  },
+                  {
+                    title: $store.state.query.places.title,
+                    id: $store.state.query.places.id
+                  },
+                  { title: theater, id: movies[theater].id },
+                  time
+                )
+              "
+            >
+              {{ time }}
+            </b-button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,15 +138,19 @@ export default {
       return [
         moment()
           .tz('Asia/Bangkok')
-          .format('YYYYMMDD'),
+          .format('dddd DD/MM/YYYY'),
         moment()
           .add(1, 'days')
           .tz('Asia/Bangkok')
-          .format('YYYYMMDD'),
+          .format('dddd DD/MM/YYYY'),
         moment()
           .add(2, 'days')
           .tz('Asia/Bangkok')
-          .format('YYYYMMDD')
+          .format('dddd DD/MM/YYYY'),
+        moment()
+          .add(3, 'days')
+          .tz('Asia/Bangkok')
+          .format('dddd DD/MM/YYYY')
       ] // just create an array with 3 date today, tomorrow, the day after
     },
     query(event, date) {
@@ -143,3 +186,75 @@ export default {
   }
 }
 </script>
+
+<style>
+.test{
+  border-left-style: none;
+  border-right-style: none;
+  background-color: black;
+  display: block;
+  margin: auto;
+}
+.book_branch {
+  margin-top: 20px;
+  margin-left: 20px;
+  position: relative;
+  border-bottom: 1px solid #000;
+  height: 54px;
+  width: 60%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#515151), color-stop(100%,#181818)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #515151 0%,#181818 100%); /* Chrome10+,Safari5.1+ */
+}
+.book_row {
+  margin-left: 20px; 
+  background: #ddd;
+  clear: both;
+  min-height: 195px;
+  max-width: 60%;
+  position: relative;
+}
+.book_right {
+  background: #CDA93D none repeat scroll 0 0;
+  float: right;
+  min-height: 195px;
+  /* max-width: 16%; */
+  color: white;
+}
+.book_theatre_no {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 65px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+}
+.book_left {
+  border-bottom: 1px solid #b2b2b2;
+  min-height: 195px;
+  border-left: 1px solid #b2b2b2;
+  display: block;
+}
+.book_left img {
+  float: left;
+  margin-left: 20px;
+  margin-top: 1.299%;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+.book_title {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+.book_desc {
+  padding-left: 22px;
+  padding-top: 16px;
+  width: 80%;
+}
+.book_time {
+  display: inline-block;
+  margin-right: 1.5px;
+  /* padding: 2px 11px; */
+}
+</style>
+

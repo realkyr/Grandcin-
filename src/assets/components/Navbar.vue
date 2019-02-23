@@ -10,7 +10,6 @@
       >&#9776;</b-button
     >
     <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
-    <!-- <div> -->
     <b-collapse id="nav_collapse" is-nav>
       <MovieSearch
         ref="movieSearch"
@@ -18,7 +17,6 @@
         @load="loadingScreen"
         @finish="initScreen"
       />
-    <!-- </div> -->
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">

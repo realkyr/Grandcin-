@@ -1,22 +1,24 @@
 <template>
   <div>
     <Navbar />
-    <b-container>
-      {{ showtime.movie.title }}
+    <!-- <b-container> -->
+      <!-- {{ showtime.movie.title }}
       theater {{ showtime.theater.title }}
       {{ showtime.place.title }}
-      {{ showtime.time }}
+      {{ showtime.time }} -->
       <div v-if="!isFinish">
         <Loading :active="!isFinish" :is-full-page="true" />
         <!-- Implement loading here -->
       </div>
       <div v-else>
-        <b-form-group id="adult" label="Adult :" label-for="adultInput">
-          <b-form-input id="adultInput" type="number" v-model="adult" />
-        </b-form-group>
-        <b-form-group id="kid" label="kids :" label-for="kidInput">
-          <b-form-input id="kidInput" type="number" v-model="kid" />
-        </b-form-group>
+        <div class="input_ticket">
+          <b-form-group id="adult" label="Adult :" label-for="adultInput">
+            <b-form-input id="adultInput" type="number" v-model="adult" />
+          </b-form-group>
+          <b-form-group id="kid" label="kids :" label-for="kidInput">
+            <b-form-input id="kidInput" type="number" v-model="kid" />
+          </b-form-group>
+        </div>
         <br />
         <br />
         <br />
@@ -38,7 +40,7 @@
         <br />
         <b-button @click="save"> Proceed </b-button>
       </div>
-    </b-container>
+    <!-- </b-container> -->
   </div>
 </template>
 
@@ -204,5 +206,19 @@ export default {
 
 .seat {
   margin-bottom: 10px;
+}
+
+.input_ticket {
+  border: 1px solid;
+  margin-top: 110px;
+  margin-right: 50px;
+  float:right;
+  width:320px;
+}
+
+.display {
+  margin-left: 50px;
+  margin-top: 20px;
+  max-width:810px;
 }
 </style>

@@ -24,23 +24,39 @@
     </div>
     <div class="blogL">
       <div class="book_branch shadow">
-        <div class="text-warning h2 pt-2 pl-4"> {{ this.$store.state.query.places.title }} </div>
-      </div>
-      <div class="book_row shadow-sm" :key="movies[theater].id" v-for="theater in Object.keys(movies)">
-        <div class="book_right">
-          <div class="book_theatre_no ml-1">
-            Theatre {{ theater }} <br />
-          </div>
+        <div class="text-warning h2 pt-2 pl-4">
+          {{ this.$store.state.query.places.title }}
         </div>
-        <div class="book_left" :key="combine(movies[theater].id, title)"
-              v-for="title in Object.keys(movies[theater].movies)">
-          <img style="max-width: 120px" :src="moviePhotoURL(movies[theater].movies[title].id)"/>
+      </div>
+      <div
+        class="book_row shadow-sm"
+        :key="movies[theater].id"
+        v-for="theater in Object.keys(movies)"
+      >
+        <div class="book_right">
+          <div class="book_theatre_no ml-1">Theatre {{ theater }} <br /></div>
+        </div>
+        <div
+          class="book_left"
+          :key="combine(movies[theater].id, title)"
+          v-for="title in Object.keys(movies[theater].movies)"
+        >
+          <img
+            style="max-width: 120px"
+            :src="moviePhotoURL(movies[theater].movies[title].id)"
+          />
           <div class="book_desc">
-            <div class="book_title"><h3>{{ title }} | </h3></div>
+            <div class="book_title">
+              <h3>{{ title }} |</h3>
+            </div>
             <div class="mt-5 ml-5">
-              <b-button class="book_time text-warning" variant="dark"
+              <b-button
+                class="book_time text-warning"
+                variant="dark"
                 :key="combine(theater.id, title, time)"
-                v-for="time in Object.keys(movies[theater].movies[title].airTime)"
+                v-for="time in Object.keys(
+                  movies[theater].movies[title].airTime
+                )"
                 :disabled="isTimePassed(time)"
                 @click="
                   select(
@@ -131,6 +147,7 @@ export default {
     },
     query(event, date) {
       // call function search in searchBar component to query today's movie
+      date = moment(date, 'dddd DD/MM/YYYY').format('YYYYMMDD')
       this.$refs.nav.search(event, date)
       this.date = date
     },
@@ -164,7 +181,7 @@ export default {
 </script>
 
 <style>
-.test{
+.test {
   border-left-style: none;
   border-right-style: none;
   background-color: black;
@@ -175,8 +192,18 @@ export default {
   border-bottom: 1px solid #000;
   height: 54px;
   max-width: 810px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#515151), color-stop(100%,#181818)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #515151 0%,#181818 100%); /* Chrome10+,Safari5.1+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #515151),
+    color-stop(100%, #181818)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    #515151 0%,
+    #181818 100%
+  ); /* Chrome10+,Safari5.1+ */
 }
 .book_row {
   background: #ddd;
@@ -186,7 +213,7 @@ export default {
   position: relative;
 }
 .book_right {
-  background: #CDA93D none repeat scroll 0 0;
+  background: #cda93d none repeat scroll 0 0;
   float: right;
   min-height: 195px;
   margin-bottom: 10px;
@@ -234,7 +261,7 @@ export default {
   display: block;
   margin: auto;
   margin-top: 20px;
-  max-width:810px;
+  max-width: 810px;
 }
 /* .blogR {
   margin-top: 20px;
@@ -248,4 +275,3 @@ export default {
   border: 1px solid;
 } */
 </style>
-

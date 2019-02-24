@@ -90,7 +90,7 @@ export default {
     ) {
       this.$emit('load')
       this.saveData()
-      const moviesSchedule = {}
+      var moviesSchedule = {}
       let db = firebase.firestore()
       if (!this.$store.state.query.places) {
         this.$emit('finish')
@@ -123,7 +123,6 @@ export default {
         }
       }
       this.$store.state.completeQuery = moviesSchedule
-      console.log(moviesSchedule)
       this.$emit('finish')
       this.$router.push('/search')
     },
@@ -140,7 +139,6 @@ export default {
       this.$store.state.query.places = this.places.choices.filter(
         ch => ch.title === this.places.select
       )[0]
-      console.log(this.$store.state.query.places)
     },
     async getTheater(db, id) {
       let ref = db

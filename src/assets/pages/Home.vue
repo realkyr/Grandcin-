@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <Navbar />
-    <Carousel class="mb-3"/>
+    <Carousel class="mb-3" />
     <b-container>
       <b-row>
         <b-col
@@ -81,13 +81,13 @@ export default {
 <style scoped>
 .movieEl:hover {
   color: white;
-  background: rgb(255,204,0);
+  background: rgb(255, 204, 0);
 }
 
 .movieEl {
   align-items: center;
-  background-color: #BBBBBB;
-  border: 2px rgb(255,204,0) solid;
+  background-color: #bbbbbb;
+  border: 2px rgb(255, 204, 0) solid;
   border-radius: 5px;
   margin-left: 25px;
   margin-top: 25px;
@@ -96,7 +96,7 @@ export default {
 }
 .movieEl img {
   /* align-items: center; */
-  border: 2px rgb(255,204,0) solid;
+  border: 2px rgb(255, 204, 0) solid;
   border-radius: 5px;
 }
 .main {

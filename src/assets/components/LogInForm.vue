@@ -1,28 +1,29 @@
 <template>
   <div>
     <div class="form-group">
-    <b-form> <!-- inline -->
-      <label class="sr-only" for="inlineFormInputName2">Name</label>
-      <b-input
-        v-model="email"
-        class="mb-2 mr-sm-2 mb-sm-0"
-        id="email"
-        placeholder="E-mail"
-      />
-      <b-input-group left="@" class="mb-2 mr-sm-2 mb-sm-0">
+      <b-form>
+        <!-- inline -->
+        <label class="sr-only" for="inlineFormInputName2">Name</label>
         <b-input
-          v-model="password"
-          type="password"
-          id="password"
-          placeholder="Password"
+          v-model="email"
+          class="mb-2 mr-sm-2 mb-sm-0"
+          id="email"
+          placeholder="E-mail"
         />
-      </b-input-group>
-      <p>
-        Not have account ?
-        <router-link to="/register"><a>Register</a></router-link>
-      </p>
-      <b-button @click="onLogIn" variant="primary">Log In</b-button>
-    </b-form>
+        <b-input-group left="@" class="mb-2 mr-sm-2 mb-sm-0">
+          <b-input
+            v-model="password"
+            type="password"
+            id="password"
+            placeholder="Password"
+          />
+        </b-input-group>
+        <p>
+          Not have account ?
+          <router-link to="/register"><a>Register</a></router-link>
+        </p>
+        <b-button @click="onLogIn" variant="primary">Log In</b-button>
+      </b-form>
     </div>
   </div>
 </template>
@@ -54,7 +55,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
-
+<style scoped></style>

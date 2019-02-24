@@ -5,13 +5,13 @@
       <b-row>
         <b-col cols="12" sm="6" md="3">
           <LogInForm @authChage="$router.push({ path: '/' })" />
-            <!-- on authChange is event listener 
+          <!-- on authChange is event listener 
             there is a function in login form component will trigger this
             event after user login
             -->
         </b-col>
       </b-row>
-     </b-container>
+    </b-container>
   </div>
 </template>
 

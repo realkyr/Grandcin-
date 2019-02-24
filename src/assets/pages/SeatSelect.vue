@@ -2,44 +2,44 @@
   <div>
     <Navbar />
     <!-- <b-container> -->
-      <!-- {{ showtime.movie.title }}
+    <!-- {{ showtime.movie.title }}
       theater {{ showtime.theater.title }}
       {{ showtime.place.title }}
       {{ showtime.time }} -->
-      <div v-if="!isFinish">
-        <Loading :active="!isFinish" :is-full-page="true" />
-        <!-- Implement loading here -->
+    <div v-if="!isFinish">
+      <Loading :active="!isFinish" :is-full-page="true" />
+      <!-- Implement loading here -->
+    </div>
+    <div v-else>
+      <div class="input_ticket">
+        <b-form-group id="adult" label="Adult :" label-for="adultInput">
+          <b-form-input id="adultInput" type="number" v-model="adult" />
+        </b-form-group>
+        <b-form-group id="kid" label="kids :" label-for="kidInput">
+          <b-form-input id="kidInput" type="number" v-model="kid" />
+        </b-form-group>
       </div>
-      <div v-else>
-        <div class="input_ticket">
-          <b-form-group id="adult" label="Adult :" label-for="adultInput">
-            <b-form-input id="adultInput" type="number" v-model="adult" />
-          </b-form-group>
-          <b-form-group id="kid" label="kids :" label-for="kidInput">
-            <b-form-input id="kidInput" type="number" v-model="kid" />
-          </b-form-group>
+      <br />
+      <br />
+      <br />
+      <div class="display">
+        <div class="seat" :key="i" v-for="i in row(seats)">
+          {{ alpha[i - 1] }}
+          <img
+            :key="alpha[i - 1] + j"
+            :ref="alpha[i - 1] + j"
+            v-for="j in 20"
+            :src="owner(alpha[i - 1] + j)"
+            @click="ticketClick($event, alpha[i - 1], j)"
+          />
+          {{ alpha[i - 1] }}
         </div>
-        <br />
-        <br />
-        <br />
-        <div class="display">
-          <div class="seat" :key="i" v-for="i in row(seats)">
-            {{ alpha[i - 1] }}
-            <img
-              :key="alpha[i - 1] + j"
-              :ref="alpha[i - 1] + j"
-              v-for="j in 20"
-              :src="owner(alpha[i - 1] + j)"
-              @click="ticketClick($event, alpha[i - 1], j)"
-            />
-            {{ alpha[i - 1] }}
-          </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <b-button @click="save"> Proceed </b-button>
       </div>
+      <br />
+      <br />
+      <br />
+      <b-button @click="save"> Proceed </b-button>
+    </div>
     <!-- </b-container> -->
   </div>
 </template>
@@ -212,13 +212,13 @@ export default {
   border: 1px solid;
   margin-top: 110px;
   margin-right: 50px;
-  float:right;
-  width:320px;
+  float: right;
+  width: 320px;
 }
 
 .display {
   margin-left: 50px;
   margin-top: 20px;
-  max-width:810px;
+  max-width: 810px;
 }
 </style>

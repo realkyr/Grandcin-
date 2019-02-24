@@ -90,7 +90,7 @@ export default {
     ) {
       this.$emit('load')
       this.saveData()
-      var moviesSchedule = {}
+      const moviesSchedule = {}
       let db = firebase.firestore()
       if (!this.$store.state.query.places) {
         this.$emit('finish')

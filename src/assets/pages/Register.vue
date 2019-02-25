@@ -1,9 +1,17 @@
 <template>
   <div class="main">
     <Navbar />
-    <b-container class="form-group border rounded border-secondary bg-warning text-secondary" style="margin-top: 5em; margin-left: 20em; padding: 5em;">
+    <b-container
+      class="form-group border rounded border-secondary bg-warning text-secondary"
+      style="margin-top: 5em; margin-left: 20em; padding: 5em;"
+    >
       <b-form @submit="onSubmit" @reset="onReset">
-        <center><b-navbar-brand to="/" class="text-secondary">GrandCiné</b-navbar-brand></center><br>
+        <center>
+          <b-navbar-brand to="/" class="text-secondary">
+            GrandCiné
+          </b-navbar-brand>
+        </center>
+        <br />
         <b-form-group
           label="E-mail Address"
           description="We'll never share your E-mail with anyone else."
@@ -49,10 +57,13 @@
             required
             placeholder="Confirm Your Password"
           >
-          </b-form-input><br>
+          </b-form-input>
+          <br />
         </b-form-group>
-        <center><b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button></center>
+        <center>
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="reset" variant="danger">Reset</b-button>
+        </center>
       </b-form>
     </b-container>
   </div>

@@ -1,17 +1,39 @@
 <template>
   <div>
     <Navbar />
-    <b-container>
-      Profile Page
-      <div :key="ticket" class="ticket" v-for="ticket in Object.keys(tickets)">
+    <b-container
+      style="margin-top: 8em; padding: 5em;"
+      class="border round border-warning bg-secondary text-warning"
+    >
+      <center>
+        <b style="font-size: 2em;">Profile Page</b>
+      </center>
+      <br />
+      <div >
         <!-- implement style and format here to make each ticket more beautiful
           or you can make it clickable -->
-        {{ tickets[ticket].movie.title }}
-        {{ tickets[ticket].date }}
-        {{ tickets[ticket].time }}
-        {{ tickets[ticket].place.title }}
-        Seats : {{ tickets[ticket].seats.join(', ') }} Theater :
-        {{ tickets[ticket].theater.title }}
+        <b-container>
+        <b-row>
+        <b-col
+        :key="ticket"
+        class="ticket"
+        v-for="ticket in Object.keys(tickets)"
+        style="margin-left: 55px;"
+        cols="12"
+        sm="6"
+        md="5"
+        >
+        <b-card>
+        <b>🎞 Name : </b>{{ tickets[ticket].movie.title }}<br />
+        <b>🗓 Date : </b>{{ tickets[ticket].date }}<br />
+        <b>⌚ Show Time : </b>{{ tickets[ticket].time }}<br />
+        <b>🎬 Cinema : </b>{{ tickets[ticket].place.title }}<br />
+        <b>💺 Seats : </b>{{ tickets[ticket].seats.join(', ') }}<br />
+        <b>✅ Theater : </b>{{ tickets[ticket].theater.title }}<br />
+        </b-card>
+        </b-col>
+        </b-row>
+        </b-container>
       </div>
     </b-container>
   </div>

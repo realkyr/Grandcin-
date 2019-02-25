@@ -10,14 +10,13 @@
         >&#9776;</b-button
       > -->
       <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
-      <b-collapse id="nav_collapse" is-nav>
         <MovieSearch
           ref="movieSearch"
           class="ml-auto"
           @load="loadingScreen"
           @finish="initScreen"
         />
-
+      <!-- <b-collapse id="nav_collapse" is-nav> -->
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-text class="rightText text-warning"
@@ -26,7 +25,7 @@
           <b-nav-item-dropdown right v-if="isAuth">
             <!-- Using button-content slot -->
             <template slot="button-content" class="bg-warning">
-              <span class="text-warning">🔻</span>
+              <span class="myDropdown text-warning">🔻</span>
             </template>
             <b-dropdown-item to="/profile">Profile</b-dropdown-item>
             <b-dropdown-item @click="LogOut">Signout</b-dropdown-item>
@@ -35,7 +34,7 @@
             <a class="text-warning">Log In</a>
           </b-nav-item>
         </b-navbar-nav>
-      </b-collapse>
+      <!-- </b-collapse> -->
     </b-navbar>
     <div v-show="isClick" id="menu">
       <div class="inner">
@@ -192,7 +191,15 @@ export default {
 </script>
 
 <style>
-@media only screen and (max-width: 1090px) {
+@media only screen and (max-width: 990px) {
+  .rightText {
+    display: none;
+  }
+  .myDropdown {
+    float: right;
+  }
+}
+@media only screen and (max-width: 990px) {
   .rightText {
     display: none;
   }

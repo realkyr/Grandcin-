@@ -51,8 +51,10 @@
           >
           </b-form-input><br>
         </b-form-group>
-        <center><b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button></center>
+        <center>
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="reset" variant="danger">Reset</b-button>
+        </center>
       </b-form>
     </b-container>
   </div>

@@ -3,7 +3,7 @@
     <div class="form-group border rounded border-warning bg-secondary" style="padding: 5em;">
       <b-form>
         <!-- inline -->
-        <label class="sr-only" for="inlineFormInputName2" >Name</label>
+        <label class="sr-only" for="inlineFormInputName2">Name</label>
         <center><b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand></center><br>
         <b-input
           v-model="email"
@@ -16,14 +16,19 @@
             v-model="password"
             type="password"
             id="password"
-            placeholder="Password"
-          />
+            placeholder="Password"/>
         </b-input-group><br>
-         <center><p class="text-warning">
-          Not have account ?
-          <router-link class="text-danger" to="/register"><a>Register</a></router-link>
-        </p></center>
-        <center><b-button @click="onLogIn" variant="warning">Log In</b-button></center>
+        <center>
+          <p class="text-warning">
+            Not have account ?
+            <router-link class="text-danger" to="/register">
+              <a>Register</a>
+            </router-link>
+          </p>
+        </center>
+        <center>
+          <b-button @click="onLogIn" variant="warning">Log In</b-button>
+        </center>
       </b-form>
     </div>
   </div>
@@ -57,7 +62,4 @@ export default {
 </script>
 
 <style scoped>
-.form-group {
-  
-}
 </style>

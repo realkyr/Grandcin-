@@ -10,7 +10,7 @@
           md="3"
           :key="movie.id"
           v-for="movie in $store.state.movies"
-          class="movieEl text-center mb-4 pt-3"
+          class="movieEl mb-4 pt-3"
           @click="viewDescription(movie.id)"
         >
           <!-- 
@@ -23,9 +23,9 @@
             :src="movie.photoURL"
           />
           <br />
-          <b>Title : </b>{{ movie.title }} <b>({{ movie.year }})</b> <br />
-          <b>Genres : </b> {{ movie['genres'].join(', ') }} <br />
-          <b>Length : </b> {{ movie.length }}
+          <b>🎞 Title : </b>{{ movie.title }} <b>({{ movie.year }})</b> <br />
+          <b>💡 Genres : </b> {{ movie['genres'].join(', ') }} <br />
+          <b>⌚ Length : </b> {{ movie.length }}
         </b-col>
       </b-row>
     </b-container>
@@ -85,8 +85,9 @@ export default {
 }
 
 .movieEl {
-  align-items: center;
-  background-color: #bbbbbb;
+  /* align-items: center; */
+  color: rgb(255, 204, 0);
+  background-color: gray;
   border: 2px rgb(255, 204, 0) solid;
   border-radius: 5px;
   margin-left: 25px;
@@ -95,7 +96,7 @@ export default {
   padding-bottom: 25px;
 }
 .movieEl img {
-  /* align-items: center; */
+  align-items: center;
   border: 2px rgb(255, 204, 0) solid;
   border-radius: 5px;
 }

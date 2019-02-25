@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar />
-    <div style="padding: 2em">
-      <img :src="movie.photoURL" style="max-height: 400px;" /> <br />
+    <div class="container border rounded border-warning bg-secondary text-warning" style="margin-top: 2em; padding: 2em;">
+      <center><img :src="movie.photoURL" class="" style="max-height: 400px;" /></center> <br />
       <br />
-      {{ movie.synopsis }} <br />
-      <!-- short story of the movie -->
-      Genre: {{ movie.genres.join(', ') }} <br />
-      วันที่เข้าฉาย: {{ date() }}
+      <div style="">
+        <p id="m-sypnosis"><b>📃 เนื้อหาโดยย่อ : </b>{{ movie.synopsis }}</p> <br />
+        <!-- short story of the movie -->
+        <p id="m-genre"><b>💡 ประเภทหนัง : </b>{{ movie.genres.join(', ') }}</p> <br />
+        <p id="m-date"><b>🗓 วันที่เข้าฉาย : </b>{{ date() }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -60,3 +62,14 @@ export default {
   }
 }
 </script>
+
+<style scope="this api replaced by slot-scope in 2.5.0+">
+  .main {
+    
+  }
+  .container {
+    
+    
+  }
+</style>
+

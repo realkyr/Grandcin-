@@ -25,7 +25,7 @@
           >
           <b-nav-item-dropdown right v-if="isAuth">
             <!-- Using button-content slot -->
-            <template slot="button-content">
+            <template slot="button-content" class="bg-warning">
               <em>User</em>
             </template>
             <b-dropdown-item to="/profile">Profile</b-dropdown-item>

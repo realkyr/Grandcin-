@@ -13,3 +13,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 src/assets/components/Carousel.vue
+src/assets/pages/Profile.vue

@@ -40,6 +40,7 @@
         @close="setVisibility('hidden')"
         :visible="visible"
         :moviesChoices="choices"
+        style="margin-left: 12em; margin-top: 1em;"
       />
     </b-container>
   </div>

@@ -18,7 +18,7 @@
               movieEl class (it stands for movie element)
             -->
           <img
-            style="max-height: 250px"
+            style="max-height: 200px"
             class="mx-auto d-block"
             :src="movie.photoURL"
           />
@@ -91,9 +91,12 @@ export default {
   border: 2px rgb(255, 204, 0) solid;
   border-radius: 5px;
   margin-left: 25px;
-  margin-top: 25px;
+  margin-right: 25px;
   padding-top: 25px;
   padding-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 100px;
 }
 .movieEl img {
   align-items: center;

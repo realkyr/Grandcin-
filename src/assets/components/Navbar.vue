@@ -2,13 +2,13 @@
   <div>
     <b-navbar toggleable="md" class="myNav">
       <!-- <b-navbar-toggle target="nav_collapse" /> -->
-      <b-button
+      <!-- <b-button
         variant="black"
         @click.prevent="isClick = !isClick"
         style="font-size:2rem;"
         class="text-warning mr-4"
         >&#9776;</b-button
-      >
+      > -->
       <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
       <b-collapse id="nav_collapse" is-nav>
         <MovieSearch
@@ -26,7 +26,7 @@
           <b-nav-item-dropdown right v-if="isAuth">
             <!-- Using button-content slot -->
             <template slot="button-content" class="bg-warning">
-              <em>User</em>
+              <span class="text-warning">🔻</span>
             </template>
             <b-dropdown-item to="/profile">Profile</b-dropdown-item>
             <b-dropdown-item @click="LogOut">Signout</b-dropdown-item>

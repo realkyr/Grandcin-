@@ -87,16 +87,16 @@ export default {
 .movieEl {
   /* align-items: center; */
   color: rgb(255, 204, 0);
-  background-color: gray;
-  border: 2px rgb(255, 204, 0) solid;
+  /* background-color: gray; */
+  /* border: 2px rgb(255, 204, 0) solid; */
   border-radius: 5px;
-  margin-left: 25px;
+  /* margin-left: 25px;
   margin-right: 25px;
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 25px;
   padding-right: 25px;
-  width: 100px;
+  width: 100px; */
 }
 .movieEl img {
   align-items: center;

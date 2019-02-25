@@ -86,6 +86,12 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 832px) {
+  .movie-selector {
+    max-width: 350px;
+  }
+}
+
 .movie-selector {
   position: absolute;
   background: white;

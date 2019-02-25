@@ -1,23 +1,30 @@
 <template>
   <div>
-    <div class="form-group border rounded border-warning bg-secondary" style="padding: 5em;">
+    <div class="form-group border rounded border-warning bg-secondary"
+      style="padding: 5em;">
       <b-form>
         <!-- inline -->
         <label class="sr-only" for="inlineFormInputName2">Name</label>
-        <center><b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand></center><br>
+        <center>
+          <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
+        </center>
+        <br />
         <b-input
           v-model="email"
           class="mb-2 mr-sm-2 mb-sm-0"
           id="email"
           placeholder="E-mail"
-        /><br>
+        />
+        <br />
         <b-input-group left="@" class="mb-2 mr-sm-2 mb-sm-0">
           <b-input
             v-model="password"
             type="password"
             id="password"
-            placeholder="Password"/>
-        </b-input-group><br>
+            placeholder="Password"
+          />
+        </b-input-group>
+        <br />
         <center>
           <p class="text-warning">
             Not have account ?
@@ -60,6 +67,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>

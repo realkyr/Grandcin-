@@ -11,7 +11,7 @@
       <!-- Implement loading here -->
     </div>
     <div v-else>
-      <div class="input_ticket">
+      <div class="input_ticket text-warning">
         <b-form-group id="adult" label="Adult :" label-for="adultInput">
           <b-form-input id="adultInput" type="number" v-model="adult" />
         </b-form-group>
@@ -21,9 +21,13 @@
       </div>
       <br />
       <br />
-      <br />
-      <div class="display">
-        <div class="seat" :key="i" v-for="i in row(seats)">
+      <div class="display ml-5">
+        <div class="book_branch shadow">
+          <div class="text-warning h2 pt-2 pl-4">
+            {{ this.$store.state.query.places.title }}
+          </div>
+        </div>
+        <div class="seat pt-5 pl-5" :key="i" v-for="i in row(seats)">
           {{ alpha[i - 1] }}
           <img
             :key="alpha[i - 1] + j"
@@ -34,11 +38,12 @@
           />
           {{ alpha[i - 1] }}
         </div>
+        <br />
+        <br />
+        <b-button @click="save" class="mx-auto d-block mb-4"> 
+          Proceed 
+        </b-button>
       </div>
-      <br />
-      <br />
-      <br />
-      <b-button @click="save"> Proceed </b-button>
     </div>
     <!-- </b-container> -->
   </div>
@@ -209,16 +214,30 @@ export default {
 }
 
 .input_ticket {
-  border: 1px solid;
+  border-radius: 20px;
+  background-color: black;
+  border: 2px rgb(255, 204, 0) solid;
   margin-top: 110px;
-  margin-right: 50px;
+  margin-right: 60px;
+  padding: 50px;
   float: right;
-  width: 320px;
+  max-width: 310px;
 }
 
 .display {
-  margin-left: 50px;
-  margin-top: 20px;
+  margin-top: 10px;
   max-width: 810px;
+  border: 2px rgb(255, 204, 0) solid;
+  border-radius: 10px;
+  border-top: none; 
+  display: block;
+}
+
+.book_branch {
+  position: relative;
+  border-radius: 10px;
+  /* border-bottom: 1px solid #000; */
+  height: 54px;
+  max-width: 100%;
 }
 </style>

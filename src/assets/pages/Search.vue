@@ -187,7 +187,7 @@ export default {
   background-color: black;
 }
 .book_branch {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   position: relative;
   border-bottom: 1px solid #000;
   height: 54px;
@@ -263,15 +263,4 @@ export default {
   margin-top: 20px;
   max-width: 810px;
 }
-/* .blogR {
-  margin-top: 20px;
-  float:right;
-  width:320px;
-}
-.blog_right_contain {
-  margin-top: 118px;
-  width: 299px;
-  text-align: center;
-  border: 1px solid;
-} */
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <Navbar />
-    <b-container>
+    <b-container style="margin-top: 12em; margin-left: 40em;">
       <b-row>
-        <b-col cols="12" sm="6" md="3">
+        <b-col cols="12" sm="6" md="5">
           <LogInForm @authChage="$router.push({ path: '/' })" />
           <!-- on authChange is event listener 
             there is a function in login form component will trigger this

@@ -14,7 +14,10 @@
         <div class="info_ticket text-warning text-center">
           <h3>รายละเอียด</h3>
           <br />
-          <img style="max-width: 120px" />
+          <img
+            style="max-width: 120px;margin-bottom:20px;"
+            :src="getMoviePhoto()"
+          />
           <h5>{{ showtime.movie.title }}</h5>
           <h3 class="text-center">จำนวนตั๋ว</h3>
           <b-form-group id="adult" label="Adult :" label-for="adultInput">
@@ -196,6 +199,12 @@ export default {
       if (this.haveOwner.includes(seat)) {
         return require('../pics/peopleseat.png')
       } else return require('../pics/armchair.png')
+    },
+    getMoviePhoto() {
+      let photoURL = this.$store.state.movies.filter(
+        x => x.id === this.showtime.movie.id
+      )[0].photoURL
+      return photoURL
     }
   },
   watch: {

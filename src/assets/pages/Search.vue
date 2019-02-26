@@ -33,50 +33,55 @@
         :key="movies[theater].id"
         v-for="theater in Object.keys(movies)"
       >
-        <div class="book_right">
-          <div class="book_theatre_no ml-1">Theatre {{ theater }} <br /></div>
-        </div>
-        <div
-          class="book_left"
-          :key="combine(movies[theater].id, title)"
-          v-for="title in Object.keys(movies[theater].movies)"
-        >
-          <img
-            style="max-width: 120px"
-            :src="moviePhotoURL(movies[theater].movies[title].id)"
-          />
-          <div class="book_desc">
-            <div class="book_title">
-              <h3>{{ title }} |</h3>
-            </div>
-            <div class="mt-5 ml-5">
-              <b-button
-                class="book_time text-warning"
-                variant="dark"
-                :key="combine(theater.id, title, time)"
-                v-for="time in Object.keys(
-                  movies[theater].movies[title].airTime
-                )"
-                :disabled="isTimePassed(time)"
-                @click="
-                  select(
-                    {
-                      title: title,
-                      id: movies[theater].movies[title].id
-                    },
-                    {
-                      title: $store.state.query.places.title,
-                      id: $store.state.query.places.id
-                    },
-                    { title: theater, id: movies[theater].id },
-                    time
-                  )
-                "
-              >
-                {{ time }}
-              </b-button>
+        <div class="booking" v-show="Object.keys(movies).length > 0">
+          <div class="book_right">
+            <div class="book_theatre_no ml-1">Theatre {{ theater }} <br /></div>
+          </div>
+          <div
+            class="book_left"
+            :key="combine(movies[theater].id, title)"
+            v-for="title in Object.keys(movies[theater].movies)"
+          >
+            <img
+              style="max-width: 120px"
+              :src="moviePhotoURL(movies[theater].movies[title].id)"
+            />
+            <div class="book_desc">
+              <div class="book_title">
+                <h3>{{ title }} |</h3>
+              </div>
+              <div class="mt-5 ml-5">
+                <b-button
+                  class="book_time text-warning"
+                  variant="dark"
+                  :key="combine(theater.id, title, time)"
+                  v-for="time in Object.keys(
+                    movies[theater].movies[title].airTime
+                  )"
+                  :disabled="isTimePassed(time)"
+                  @click="
+                    select(
+                      {
+                        title: title,
+                        id: movies[theater].movies[title].id
+                      },
+                      {
+                        title: $store.state.query.places.title,
+                        id: $store.state.query.places.id
+                      },
+                      { title: theater, id: movies[theater].id },
+                      time
+                    )
+                  "
+                >
+                  {{ time }}
+                </b-button>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="book_row" v-show="Object.keys(movies).length == 0">
+          <h2>ไม่มีรอบ</h2>
         </div>
       </div>
     </div>

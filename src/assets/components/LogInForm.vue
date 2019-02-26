@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div
+    <b-container
       class="form-group border rounded border-warning bg-secondary"
-      style="width: 600px; padding: 5em;"
+      style="width: 600px; margin-top: 5em; padding: 5em; margin-left: 50%;"
     >
       <b-form>
         <!-- inline -->
         <label class="sr-only" for="inlineFormInputName2">Name</label>
         <center>
-          <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
+          <b-navbar-brand to="/" class="text-warning">
+            <img height="150px" src="../pics/logo.png" />
+          </b-navbar-brand>
         </center>
         <br />
         <b-input
@@ -39,7 +41,7 @@
           <b-button @click="onLogIn" variant="warning">Log In</b-button>
         </center>
       </b-form>
-    </div>
+    </b-container>
   </div>
 </template>
 <script>

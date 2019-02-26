@@ -12,7 +12,7 @@
       <div>
         <!-- implement style and format here to make each ticket more beautiful
           or you can make it clickable -->
-        <b-container>
+        <b-container class="d-flex justify-center">
           <b-row>
             <b-col
               :key="ticket"

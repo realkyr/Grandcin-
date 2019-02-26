@@ -1,15 +1,18 @@
 <template>
   <div>
     <Navbar />
-    <div v-if="!isAuth">
+    <div
+      v-if="!isAuth" 
+    >
       <b-container
-        style="margin-top: 8em; margin-left: 40em;"
+        style="margin-top: 10em; margin-left: 40em;"
         cols="12"
         sm="6"
-        md="5"
+        md="3"
       >
         <b-row>
-          <b-col>
+          <b-col 
+          md="5">
             <center>
               <p class="text-danger">
                 ** ต้อง <b>Log In</b> ก่อนเพื่อทำการจ่ายเงิน **
@@ -24,17 +27,23 @@
     <div v-else>
       <b-container style="margin-left: 25em;">
         <b-row>
-          <b-col cols="12" sm="6" md="8">
+          <b-col cols="12" sm="6" md="7">
             <b-card
-              style="margin-top: 8em; margin-left: 10em; padding: 5em;"
+              style="margin-top: 5em; margin-left: 10em; padding: 2em;"
               class="border round border-warning bg-secondary text-warning"
             >
               <center>
                 <h1>รอบที่เลือก</h1>
               </center>
               <br />
+              <center>
+              <img
+                style="max-width: 150px; margin-bottom:20px;  
+                border: 2px rgb(255, 204, 0) solid; border-radius: 5px;"
+                :src="getMoviePhoto()"
+              />
+              </center>
               <br />
-              <!-- It should be a movie picture  -->
               <b>
                 🎞 ชื่อภาพยนตร์ :
               </b>
@@ -79,7 +88,7 @@
                 <b-button
                   @click="finish"
                   variant="success"
-                  style="margin-right: 0px;"
+                  style="margin-right: 2px;"
                 >
                   Finish
                   <!-- this is just dummy use after payment,
@@ -139,6 +148,13 @@ export default {
         .doc(bookingInfo.movie.id)
         .update(booking)
       this.$router.push('/profile')
+    },
+    // },
+    getMoviePhoto() {
+      let photoURL = this.$store.state.movies.filter(
+        x => x.id == this.$store.state.bookingInfo.movie.id
+      )[0].photoURL
+      return photoURL
     }
   },
   computed: {

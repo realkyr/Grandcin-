@@ -24,6 +24,7 @@
               md="5"
             >
               <b-card>
+                <h3>GrandCiné</h3>
                 <b>🎞 Name : </b>{{ tickets[ticket].movie.title }}<br />
                 <b>🗓 Date : </b>{{ tickets[ticket].date }}<br />
                 <b>⌚ Show Time : </b>{{ tickets[ticket].time }}<br />

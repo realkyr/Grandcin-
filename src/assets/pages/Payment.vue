@@ -2,26 +2,58 @@
   <div>
     <Navbar />
     <div v-if="!isAuth">
-      ต้อง log in ก่อนเพื่อทำการจ่ายเงิน
-      <LogInForm />
-      <!-- use log in form component -->
+      <b-container style="margin-top: 8em; margin-left: 40em;"  cols="12" sm="6" md="5">
+        <b-row>
+          <b-col>
+          <center><p class="text-danger">** ต้อง <b>Log In</b> ก่อนเพื่อทำการจ่ายเงิน **</p></center>
+          <LogInForm />
+          <!-- use log in form component -->
+          </b-col>
+        </b-row>
+      </b-container>
     </div>
     <div v-else>
-      {{ $store.state.bookingInfo }}
-      <br />
-      <b-button>
-        Paypal
-      </b-button>
-      <br />
-      <br />
-      <b-button>
-        Credit/Debit Card
-      </b-button>
-      <b-button @click="finish">
-        finish
-        <!-- this is just dummy use after payment,
-              you can copy this function to use at another page -->
-      </b-button>
+      <b-container style="margin-left: 25em;"
+      >
+      
+        <b-row >
+          <b-col cols="12" sm="6" md="8">
+            <b-card  style="margin-top: 8em; margin-left: 10em; padding: 5em;"
+      class="border round border-warning bg-secondary text-warning">
+            <center><h1>รอบที่เลือก</h1></center><br /><br />
+            <!-- It should be a movie picture  -->
+            <b>🎞 ชื่อภาพยนตร์ : </b>{{ $store.state.bookingInfo.movie.title }}<br /><br />
+            <b>✅ โรงภาพยนตร์ : </b>{{ $store.state.bookingInfo.theater.title }}<br /><br />
+            <b>🗓 รอบของภาพยนตร์ : </b>{{ $store.state.bookingInfo.date }}
+            {{ $store.state.bookingInfo.time }}
+            <br /><br />
+            <b>💺 ที่นั่งที่เลือก : </b><span :key="seat" v-for="seat in $store.state.bookingInfo.seats">
+            {{ seat }}
+            </span>            
+            <br />
+            <br />
+            <br />
+            <center>
+            <b-button variant="primary" style="margin-left: 50px; margin-right: 50px;">
+              Paypal
+            </b-button>
+            
+            
+            <b-button variant="danger">
+              Credit/Debit Card
+            </b-button>
+            <br />
+            <br />
+            <b-button @click="finish" variant="success" style="margin-right: 0px;">
+              Finish
+              <!-- this is just dummy use after payment,
+                    you can copy this function to use at another page -->
+            </b-button>
+            </center>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
     </div>
   </div>
 </template>

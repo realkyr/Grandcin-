@@ -30,6 +30,19 @@
         <b>🎬 Cinema : </b>{{ tickets[ticket].place.title }}<br />
         <b>💺 Seats : </b>{{ tickets[ticket].seats.join(', ') }}<br />
         <b>✅ Theater : </b>{{ tickets[ticket].theater.title }}<br />
+        <br />
+        <center>
+          <b-button variant="success" style="margin: 10px;">
+            Print-Ticket
+          </b-button>
+          <b-button variant="warning" style="margin: 10px;">
+            Send Ticket to E-mail
+          </b-button>
+          <br />
+          <b-button variant="danger" style="margin-right: 15px;">
+            Refund
+          </b-button>
+        </center>
         </b-card>
         </b-col>
         </b-row>

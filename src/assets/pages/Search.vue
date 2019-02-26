@@ -6,7 +6,7 @@
       <!-- loading ... -->
       <!-- implement loading here -->
     </b-container>
-    <div class="test shadow mt-5 p-2">
+    <div class="test shadow p-2">
       <b-container v-if="isFinish">
         <!-- {{ this.$store.state.query.places.title }} -->
         <b-row align-v="center" class="justify-content-around mx-auto">

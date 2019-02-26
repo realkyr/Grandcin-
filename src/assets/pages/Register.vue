@@ -3,7 +3,7 @@
     <Navbar />
     <b-container
       class="form-group border rounded border-secondary bg-warning text-secondary"
-      style="margin-top: 5em; margin-left: 20em; padding: 5em;"
+      style="width: 600px; margin-top: 5em; padding: 5em;"
     >
       <b-form @submit="onSubmit" @reset="onReset">
         <center>

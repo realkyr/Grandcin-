@@ -2,32 +2,26 @@
   <div>
     <Navbar />
     <div v-if="!isAuth">
-      <b-container
-        style="margin-top: 10em; margin-left: 40em;"
-        cols="12"
-        sm="6"
-        md="3"
-      >
+      <b-container cols="12" sm="6" md="3">
         <b-row>
-          <b-col md="5">
+          <b-col md="12">
             <center>
               <p class="text-danger">
                 ** ต้อง <b>Log In</b> ก่อนเพื่อทำการจ่ายเงิน **
               </p>
+              <LogInForm />
             </center>
-            <LogInForm />
             <!-- use log in form component -->
           </b-col>
         </b-row>
       </b-container>
     </div>
     <div v-else>
-      <b-container style="margin-left: 25em;">
+      <b-container>
         <b-row>
-          <b-col cols="12" sm="6" md="7">
+          <b-col cols="12">
             <b-card
-              style="margin-top: 5em; margin-left: 10em; padding: 2em;"
-              class="border round border-warning bg-secondary text-warning"
+              class="border round border-warning bg-secondary text-warning payment-card"
             >
               <center>
                 <h1>ชำระเงินสำเร็จ</h1>
@@ -158,3 +152,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.payment-card {
+  width: 500px;
+  margin-top: 5em;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2em;
+}
+</style>

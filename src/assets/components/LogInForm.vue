@@ -2,7 +2,7 @@
   <div>
     <div
       class="form-group border rounded border-warning bg-secondary"
-      style="padding: 5em;"
+      style="width: 600px; padding: 5em;"
     >
       <b-form>
         <!-- inline -->

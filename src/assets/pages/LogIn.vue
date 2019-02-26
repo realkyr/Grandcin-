@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <Navbar />
-    <b-container style="margin-top: 12em; margin-left: 40em;">
+    <b-container>
       <b-row>
         <b-col cols="12" sm="6" md="5">
           <LogInForm @authChage="$router.push({ path: '/' })" />

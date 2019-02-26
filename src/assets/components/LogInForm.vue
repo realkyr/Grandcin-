@@ -9,7 +9,7 @@
         <label class="sr-only" for="inlineFormInputName2">Name</label>
         <center>
           <b-navbar-brand to="/" class="text-warning">
-            <img height="150px" src="../pics/logo.png" />
+            <img height="150px;" src="../pics/logo.png" />
           </b-navbar-brand>
         </center>
         <br />

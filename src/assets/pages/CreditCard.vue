@@ -4,6 +4,7 @@
       <div class="card-wrapper"></div>
       <div class="formcontainer">
         <form action="">
+          <img height="120px" src="../pics/logo.png" />
           <input
             class="form-control"
             placeholder="Card Number"
@@ -37,7 +38,13 @@
         </form>
       </div>
       <div class="text-right purchasebtn">
-        <b-button variant="primary" to="/success">Purchase</b-button>
+        <b-button
+          @click="alert()"
+          variant="primary mx-auto d-block"
+          to="/success"
+        >
+          Purchase
+        </b-button>
       </div>
     </div>
   </div>

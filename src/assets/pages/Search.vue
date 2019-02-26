@@ -13,10 +13,6 @@
           <b-col :key="i" v-for="i in dayList()" cols="3">
             <b-button variant="outline-warning" @click="query($event, i)">
               {{ i }}
-              <!-- 
-                if you want to change date format change it here 
-                use in-line methods
-              -->
             </b-button>
           </b-col>
         </b-row>
@@ -29,7 +25,7 @@
         </div>
       </div>
       <div
-        class="book_row shadow-sm"
+        class="book_row shadow"
         :key="movies[theater].id"
         v-for="theater in Object.keys(movies)"
       >
@@ -51,7 +47,7 @@
             />
             <div class="book_desc">
               <div class="book_title">
-                <h3>{{ title }} |</h3>
+                <h3>{{ title }}</h3>
               </div>
               <div class="mt-5 ml-5">
                 <b-button
@@ -83,16 +79,8 @@
             </div>
           </div>
         </div>
-        <div class="book_row" v-show="Object.keys(movies).length == 0">
-          <h2>ไม่มีรอบ</h2>
-        </div>
       </div>
     </div>
-    <!-- <div class="blogR">
-      <div class="blog_right_contain d-block mx-auto">
-        <h3>รอบที่เลือก</h3>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -242,11 +230,12 @@ export default {
   min-height: 195px;
   border-left: 1px solid #b2b2b2;
   display: block;
+  padding: 3px;
 }
 .book_left img {
   float: left;
   margin-left: 20px;
-  margin-top: 1.299%;
+  margin-top: 5px;
   margin-right: 20px;
   border-radius: 5px;
 }

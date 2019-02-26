@@ -71,7 +71,6 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import { Printd } from 'printd'
 // import mailer from 'nodemailer'
-
 export default {
   async mounted() {
     // this function is called when Page mounted (Vue.js lifecycle)
@@ -105,7 +104,6 @@ export default {
   methods: {
     print(ticket) {
       const style = `
-
       #${ticket} {
         color: red;
       }
@@ -147,7 +145,6 @@ export default {
         .collection('schedule')
         .doc(ticket.movie.id)
         .update({ [ticket.date]: data[ticket.date] })
-
       delete this.tickets[id]
       this.$forceUpdate()
     }

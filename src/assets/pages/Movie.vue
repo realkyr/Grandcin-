@@ -6,10 +6,10 @@
       style="margin-top: 2em; padding: 2em;"
     >
       <center>
-        <img 
+        <img
           :src="movie.photoURL"
           class=""
-          style="max-height: 400px; border: 2px rgb(255, 204, 0) solid; border-radius: 20px;" 
+          style="max-height: 400px; border: 2px rgb(255, 204, 0) solid; border-radius: 20px;"
         />
       </center>
       <br />

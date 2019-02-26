@@ -1,9 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <div
-      v-if="!isAuth" 
-    >
+    <div v-if="!isAuth">
       <b-container
         style="margin-top: 10em; margin-left: 40em;"
         cols="12"
@@ -11,8 +9,7 @@
         md="3"
       >
         <b-row>
-          <b-col 
-          md="5">
+          <b-col md="5">
             <center>
               <p class="text-danger">
                 ** ต้อง <b>Log In</b> ก่อนเพื่อทำการจ่ายเงิน **
@@ -37,11 +34,11 @@
               </center>
               <br />
               <center>
-              <img
-                style="max-width: 150px; margin-bottom:20px;  
-                border: 2px rgb(255, 204, 0) solid; border-radius: 5px;"
-                :src="getMoviePhoto()"
-              />
+                <img
+                  style="max-width: 150px; margin-bottom:20px;  
+                  border: 2px rgb(255, 204, 0) solid; border-radius: 5px;"
+                  :src="getMoviePhoto()"
+                />
               </center>
               <br />
               <b>
@@ -152,7 +149,7 @@ export default {
     // },
     getMoviePhoto() {
       let photoURL = this.$store.state.movies.filter(
-        x => x.id == this.$store.state.bookingInfo.movie.id
+        x => x.id === this.$store.state.bookingInfo.movie.id
       )[0].photoURL
       return photoURL
     }

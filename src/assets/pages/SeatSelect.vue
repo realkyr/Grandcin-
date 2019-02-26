@@ -15,7 +15,8 @@
           <h3>รายละเอียด</h3>
           <br />
           <img
-            style="max-width: 120px;margin-bottom:20px;"
+            style="max-width: 120px;margin-bottom:20px;
+            border: 2px rgb(255, 204, 0) solid; border-radius: 5px;"
             :src="getMoviePhoto()"
           />
           <h5>{{ showtime.movie.title }}</h5>

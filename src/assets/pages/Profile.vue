@@ -18,10 +18,10 @@
               :key="ticket"
               class="ticket"
               v-for="ticket in Object.keys(tickets)"
-              style="margin-left: 55px;"
               cols="12"
-              sm="6"
-              md="5"
+              sm="12"
+              md="12"
+              lg="5"
             >
               <b-card :id="ticket" :ref="ticket">
                 <center>
@@ -43,15 +43,15 @@
                   >
                     Print-Ticket
                   </b-button>
-                  <b-button
-                    @click="sendEmail"
-                    variant="warning"
-                    style="margin: 10px;"
-                  >
+                  <b-button variant="warning" style="margin: 10px;">
                     Send Ticket to E-mail
                   </b-button>
                   <br />
-                  <b-button variant="danger" style="margin-right: 15px;">
+                  <b-button
+                    @click="refund(tickets[ticket], ticket)"
+                    variant="danger"
+                    style="margin-right: 15px;"
+                  >
                     Refund
                   </b-button>
                 </center>
@@ -103,34 +103,6 @@ export default {
     }
   },
   methods: {
-    // sendEmail() {
-    //   var smtp = {
-    //     host: 'host.email.com', //  set to your host name or ip
-    //     port: 25, // 25, 465, 587 depend on your
-    //     secure: true, // use SSL
-    //     auth: {
-    //       user: '60070072@kmitl.ac.th', //  user account
-    //       pass: 'SMJa4OwZ' // user password
-    //     }
-    //   }
-    //   var smtpTransport = mailer.createTransport(smtp)
-
-    //   var mail = {
-    //     from: 'from@email.com', //  from email (option)
-    //     to: '60070119@kmitl.ac.th', //  to email (require)
-    //     subject: 'Subject Text', // subject
-    //     html: `<p>Test</p>` // email body
-    //   }
-    //   smtpTransport.sendMail(mail, function(error, response) {
-    //     smtpTransport.close()
-    //     if (error) {
-    //       //  error handler
-    //     } else {
-    //       //  success handler
-    //       console.log('send email success')
-    //     }
-    //   })
-    // },
     print(ticket) {
       const style = `
 
@@ -140,6 +112,44 @@ export default {
     `
       const d = new Printd()
       d.print(document.getElementById(ticket), style)
+    },
+    async refund(ticket, id) {
+      console.log(ticket)
+      console.log(id)
+      let db = firebase.firestore()
+      let user = this.$store.state.user
+      console.log(user.uid)
+      await db
+        .collection('users')
+        .doc(user.uid)
+        .collection('tickets')
+        .doc(id)
+        .delete()
+      console.log(ticket.place.id)
+      console.log(ticket.theater.id)
+      console.log(ticket.movie.id)
+      let ref = db
+        .collection('branch')
+        .doc(ticket.place.id)
+        .collection('theater')
+        .doc(ticket.theater.id)
+        .collection('schedule')
+        .doc(ticket.movie.id)
+      let document = await ref.get()
+      let data = { ...document.data() }
+      for (let seat of ticket.seats) {
+        delete data[ticket.date][ticket.time][seat]
+      }
+      db.collection('branch')
+        .doc(ticket.place.id)
+        .collection('theater')
+        .doc(ticket.theater.id)
+        .collection('schedule')
+        .doc(ticket.movie.id)
+        .update({ [ticket.date]: data[ticket.date] })
+
+      delete this.tickets[id]
+      this.$forceUpdate()
     }
   }
 }

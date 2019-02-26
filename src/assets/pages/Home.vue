@@ -10,7 +10,7 @@
           md="3"
           :key="movie.id"
           v-for="movie in $store.state.movies"
-          class="movieEl mb-4 pt-3"
+          class="movieEl mb-4 p-3"
           @click="viewDescription(movie.id)"
         >
           <!-- 

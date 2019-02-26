@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="form-group border rounded border-warning bg-secondary"
-      style="padding: 5em;">
+    <div
+      class="form-group border rounded border-warning bg-secondary"
+      style="padding: 5em;"
+    >
       <b-form>
         <!-- inline -->
         <label class="sr-only" for="inlineFormInputName2">Name</label>

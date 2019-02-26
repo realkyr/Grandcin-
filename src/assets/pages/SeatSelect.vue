@@ -1,51 +1,64 @@
 <template>
   <div>
     <Navbar />
-    <!-- <b-container> -->
-    <!-- {{ showtime.movie.title }}
+    <b-container>
+      <!-- {{ showtime.movie.title }}
       theater {{ showtime.theater.title }}
       {{ showtime.place.title }}
       {{ showtime.time }} -->
-    <div v-if="!isFinish">
-      <Loading :active="!isFinish" :is-full-page="true" />
-      <!-- Implement loading here -->
-    </div>
-    <div v-else>
-      <div class="input_ticket text-warning">
-        <b-form-group id="adult" label="Adult :" label-for="adultInput">
-          <b-form-input id="adultInput" type="number" v-model="adult" />
-        </b-form-group>
-        <b-form-group id="kid" label="kids :" label-for="kidInput">
-          <b-form-input id="kidInput" type="number" v-model="kid" />
-        </b-form-group>
+      <div v-if="!isFinish">
+        <Loading :active="!isFinish" :is-full-page="true" />
+        <!-- Implement loading here -->
       </div>
-      <br />
-      <br />
-      <div class="display ml-5">
-        <div class="book_branch shadow">
-          <div class="text-warning h2 pt-2 pl-4">
-            {{ this.$store.state.query.places.title }}
+      <div v-else>
+        <div class="info_ticket text-warning text-center">
+          <h3>รายละเอียด</h3>
+          <br />
+          <img style="max-width: 120px" />
+          <h5>{{ showtime.movie.title }}</h5>
+          <h3 class="text-center">จำนวนตั๋ว</h3>
+          <b-form-group id="adult" label="Adult :" label-for="adultInput">
+            <b-form-input id="adultInput" type="number" v-model="adult" />
+          </b-form-group>
+          <b-form-group id="kid" label="kids :" label-for="kidInput">
+            <b-form-input id="kidInput" type="number" v-model="kid" />
+          </b-form-group>
+        </div>
+        <div class="display mx-auto d-block">
+          <div class="book_branch shadow text-warning">
+            <div class="text-warning pl-4 pt-2">
+              <span class="h3">
+                {{ this.$store.state.query.places.title }} | Theater
+                {{ showtime.theater.title }}
+              </span>
+              <span class="h5">รอบ :{{ showtime.time }}</span>
+            </div>
           </div>
+          <div class="theatre">
+            <div class="cinema-seats">
+              <div class="mySeat mt-4">
+                <div class="seat pt-4" :key="i" v-for="i in row(seats)">
+                  {{ alpha[i - 1] }}
+                  <img
+                    :key="alpha[i - 1] + j"
+                    :ref="alpha[i - 1] + j"
+                    v-for="j in 20"
+                    :src="owner(alpha[i - 1] + j)"
+                    @click="ticketClick($event, alpha[i - 1], j)"
+                  />
+                  {{ alpha[i - 1] }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <b-button @click="save" class="mx-auto d-block mb-4"
+            >Proceed
+          </b-button>
         </div>
-        <div class="seat pt-5 pl-5" :key="i" v-for="i in row(seats)">
-          {{ alpha[i - 1] }}
-          <img
-            :key="alpha[i - 1] + j"
-            :ref="alpha[i - 1] + j"
-            v-for="j in 20"
-            :src="owner(alpha[i - 1] + j)"
-            @click="ticketClick($event, alpha[i - 1], j)"
-          />
-          {{ alpha[i - 1] }}
-        </div>
-        <br />
-        <br />
-        <b-button @click="save" class="mx-auto d-block mb-4"> 
-          Proceed 
-        </b-button>
       </div>
-    </div>
-    <!-- </b-container> -->
+    </b-container>
   </div>
 </template>
 
@@ -208,20 +221,32 @@ export default {
 .seat img:nth-child(10) {
   margin-right: 50px;
 }
+.mySeat {
+  margin-left: 40px;
+}
+@media only screen and (max-width: 996px) {
+  .seat img:nth-child(10) {
+    margin-right: 5px;
+  }
+  .mySeat {
+    margin-left: 8px;
+  }
+}
 
 .seat {
   margin-bottom: 10px;
 }
 
-.input_ticket {
+.info_ticket {
+  /* float: left; */
+  display: block;
   border-radius: 20px;
   background-color: black;
   border: 2px rgb(255, 204, 0) solid;
-  margin-top: 110px;
-  margin-right: 60px;
+  margin: auto;
+  margin-top: 20px;
   padding: 50px;
-  float: right;
-  max-width: 310px;
+  max-width: 500px;
 }
 
 .display {
@@ -229,14 +254,14 @@ export default {
   max-width: 810px;
   border: 2px rgb(255, 204, 0) solid;
   border-radius: 10px;
-  border-top: none; 
+  border-top: none;
   display: block;
+  background-color: #dedede;
 }
 
 .book_branch {
   position: relative;
   border-radius: 10px;
-  /* border-bottom: 1px solid #000; */
   height: 54px;
   max-width: 100%;
 }

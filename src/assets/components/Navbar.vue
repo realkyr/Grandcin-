@@ -10,30 +10,30 @@
         >&#9776;</b-button
       > -->
       <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
-        <MovieSearch
-          ref="movieSearch"
-          class="ml-auto"
-          @load="loadingScreen"
-          @finish="initScreen"
-        />
+      <MovieSearch
+        ref="movieSearch"
+        class="ml-auto"
+        @load="loadingScreen"
+        @finish="initScreen"
+      />
       <!-- <b-collapse id="nav_collapse" is-nav> -->
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-text class="rightText text-warning"
-            >Welcome! {{ displayName }}</b-nav-text
-          >
-          <b-nav-item-dropdown right v-if="isAuth">
-            <!-- Using button-content slot -->
-            <template slot="button-content" class="bg-warning">
-              <span class="myDropdown text-warning">🔻</span>
-            </template>
-            <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-            <b-dropdown-item @click="LogOut">Signout</b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item to="login" v-else class="">
-            <a class="text-warning">Log In</a>
-          </b-nav-item>
-        </b-navbar-nav>
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-text class="rightText text-warning">
+          Welcome! {{ displayName }}
+        </b-nav-text>
+        <b-nav-item-dropdown right v-if="isAuth">
+          <!-- Using button-content slot -->
+          <template slot="button-content" class="bg-warning">
+            <span class="myDropdown text-warning">🔻</span>
+          </template>
+          <b-dropdown-item to="/profile">Profile</b-dropdown-item>
+          <b-dropdown-item @click="LogOut">Signout</b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item to="login" v-else class="">
+          <a class="text-warning">Log In</a>
+        </b-nav-item>
+      </b-navbar-nav>
       <!-- </b-collapse> -->
     </b-navbar>
     <div v-show="isClick" id="menu">

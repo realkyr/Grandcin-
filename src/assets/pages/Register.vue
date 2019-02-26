@@ -2,8 +2,9 @@
   <div class="main">
     <Navbar />
     <b-container
-          class="form-group border rounded border-secondary bg-warning text-secondary"
-          style="margin-top: 5em; margin-left: 20em; padding: 5em;">
+      class="form-group border rounded border-secondary bg-warning text-secondary"
+      style="margin-top: 5em; margin-left: 20em; padding: 5em;"
+    >
       <b-form @submit="onSubmit" @reset="onReset">
         <center>
           <b-navbar-brand to="/" class="text-secondary">

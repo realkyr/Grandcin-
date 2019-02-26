@@ -22,4 +22,9 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+#app {
+  font-family: 'Prompt', sans-serif;
+}
+</style>

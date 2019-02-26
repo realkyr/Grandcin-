@@ -4,7 +4,7 @@
     <div v-if="!isAuth">
       <b-container cols="12">
         <b-row>
-          <b-col md="12">
+          <b-col cols="12">
             <center>
               <p class="text-danger">
                 ** ต้อง <b>Log In</b> ก่อนเพื่อทำการจ่ายเงิน **

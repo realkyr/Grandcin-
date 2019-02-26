@@ -21,7 +21,6 @@
               cols="12"
               sm="12"
               md="12"
-              lg="5"
             >
               <b-card :id="ticket" :ref="ticket">
                 <center>

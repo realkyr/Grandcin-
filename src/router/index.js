@@ -13,7 +13,6 @@ import Success from '../assets/pages/Success'
 Vue.use(Router)
 
 export default new Router({
-  base: 'xsample',
   mode: 'history',
   routes: [
     { path: '/', component: Home },

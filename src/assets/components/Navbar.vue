@@ -9,7 +9,10 @@
         class="text-warning mr-4"
         >&#9776;</b-button
       > -->
-      <b-navbar-brand to="/" class="text-warning">GrandCiné</b-navbar-brand>
+      <!-- GrandCiné -->
+      <b-navbar-brand to="/" class="logo ml-4">
+        <img height="80px" src="../pics/logo.png" />
+      </b-navbar-brand>
       <MovieSearch
         ref="movieSearch"
         class="ml-auto"
@@ -191,7 +194,7 @@ export default {
 </script>
 
 <style>
-@media only screen and (max-width: 990px) {
+@media only screen and (max-width: 1018px) {
   .rightText {
     display: none;
   }
@@ -199,9 +202,10 @@ export default {
     float: right;
   }
 }
-@media only screen and (max-width: 990px) {
-  .rightText {
-    display: none;
+@media only screen and (max-width: 720px) {
+  .logo {
+    display: block;
+    margin: auto;
   }
 }
 .myNav {

@@ -23,7 +23,7 @@
               sm="6"
               md="5"
             >
-              <b-card>
+              <b-card :ref="ticket">
                 <h3>GrandCiné</h3>
                 <b>🎞 Name : </b>{{ tickets[ticket].movie.title }}<br />
                 <b>🗓 Date : </b>{{ tickets[ticket].date }}<br />
@@ -33,7 +33,11 @@
                 <b>✅ Theater : </b>{{ tickets[ticket].theater.title }}<br />
                 <br />
                 <center>
-                  <b-button variant="success" style="margin: 10px;">
+                  <b-button
+                    @click="print(ticket)"
+                    variant="success"
+                    style="margin: 10px;"
+                  >
                     Print-Ticket
                   </b-button>
                   <b-button variant="warning" style="margin: 10px;">
@@ -87,6 +91,11 @@ export default {
   data() {
     return {
       tickets: {}
+    }
+  },
+  methods: {
+    print(ticket) {
+      console.log(ticket)
     }
   }
 }

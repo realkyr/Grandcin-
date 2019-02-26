@@ -24,10 +24,6 @@
         class="myImg"
         img-src="https://23.imgtrue.com/2019/02/21/download0e9a2f8f4f869eb8.jpg"
       />
-      <b-carousel-slide
-        class="myImg"
-        img-src="https://23.imgtrue.com/2019/02/21/download0e9a2f8f4f869eb8.jpg"
-      />
     </b-carousel>
   </div>
 </template>

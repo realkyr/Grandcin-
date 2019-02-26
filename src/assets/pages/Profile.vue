@@ -13,6 +13,7 @@
         <!-- implement style and format here to make each ticket more beautiful
           or you can make it clickable -->
         <b-container>
+<<<<<<< HEAD
           <b-row>
             <b-col
               :key="ticket"
@@ -33,6 +34,41 @@
               </b-card>
             </b-col>
           </b-row>
+=======
+        <b-row>
+        <b-col
+        :key="ticket"
+        class="ticket"
+        v-for="ticket in Object.keys(tickets)"
+        style="margin-left: 55px;"
+        cols="12"
+        sm="6"
+        md="5"
+        >
+        <b-card>
+        <b>🎞 Name : </b>{{ tickets[ticket].movie.title }}<br />
+        <b>🗓 Date : </b>{{ tickets[ticket].date }}<br />
+        <b>⌚ Show Time : </b>{{ tickets[ticket].time }}<br />
+        <b>🎬 Cinema : </b>{{ tickets[ticket].place.title }}<br />
+        <b>💺 Seats : </b>{{ tickets[ticket].seats.join(', ') }}<br />
+        <b>✅ Theater : </b>{{ tickets[ticket].theater.title }}<br />
+        <br />
+        <center>
+          <b-button variant="success" style="margin: 10px;">
+            Print-Ticket
+          </b-button>
+          <b-button variant="warning" style="margin: 10px;">
+            Send Ticket to E-mail
+          </b-button>
+          <br />
+          <b-button variant="danger" style="margin-right: 15px;">
+            Refund
+          </b-button>
+        </center>
+        </b-card>
+        </b-col>
+        </b-row>
+>>>>>>> 3a506ecc5363724c96b4a510db4093105b47759a
         </b-container>
       </div>
     </b-container>

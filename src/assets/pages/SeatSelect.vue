@@ -22,10 +22,14 @@
           <h5>{{ showtime.movie.title }}</h5>
           <h3 class="text-center">จำนวนตั๋ว</h3>
           <b-form-group id="adult" label="Adult :" label-for="adultInput">
-            <b-form-input id="adultInput" type="number" v-model="adult" />
+            <b-form-input
+              id="adultInput"
+              type="number"
+              v-model.number="adult"
+            />
           </b-form-group>
           <b-form-group id="kid" label="kids :" label-for="kidInput">
-            <b-form-input id="kidInput" type="number" v-model="kid" />
+            <b-form-input id="kidInput" type="number" v-model.number="kid" />
           </b-form-group>
         </div>
         <div class="display mx-auto d-block">
@@ -184,6 +188,7 @@ export default {
         alert('กรุณาเลือกตั๋วให้เท่ากับจำนวนที่ตั้งค่าไว้')
         return
       }
+      this.showtime.price = 120 * this.kid + 140 * this.adult
       this.$store.state.bookingInfo = this.showtime
       this.$store.state.bookingInfo.ticketType = {}
       this.$store.state.bookingInfo.ticketType.adult = this.adult

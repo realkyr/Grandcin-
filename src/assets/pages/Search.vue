@@ -35,7 +35,10 @@
       >
         <div class="booking" v-show="Object.keys(movies).length > 0">
           <div class="book_right">
-            <div class="book_theatre_no ml-1">Theatre {{ theater }} <br /></div>
+            <div class="book_theatre_no ml-1 p-1">
+              Theatre {{ theater }}
+              <br />
+            </div>
           </div>
           <div
             class="book_left"
@@ -216,6 +219,7 @@ export default {
   min-height: 195px;
   max-width: 810px;
   position: relative;
+  margin-bottom: 30px;
 }
 .book_right {
   background: #cda93d none repeat scroll 0 0;
@@ -225,8 +229,9 @@ export default {
   color: white;
 }
 .book_theatre_no {
+  width: 150px;
   display: block;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
   margin-top: 65px;
   text-align: center;

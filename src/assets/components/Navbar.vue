@@ -1,14 +1,6 @@
 <template>
   <div>
     <b-navbar toggleable="md" class="myNav">
-      <!-- <b-navbar-toggle target="nav_collapse" /> -->
-      <!-- <b-button
-        variant="black"
-        @click.prevent="isClick = !isClick"
-        style="font-size:2rem;"
-        class="text-warning mr-4"
-        >&#9776;</b-button
-      > -->
       <!-- GrandCiné -->
       <b-navbar-brand to="/" class="logo ml-4">
         <img height="80px" src="../pics/logo.png" />
@@ -203,6 +195,12 @@ export default {
   }
 }
 @media only screen and (max-width: 720px) {
+  .logo {
+    display: block;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 683px) {
   .logo {
     display: block;
     margin: auto;

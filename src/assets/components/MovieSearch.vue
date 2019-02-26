@@ -18,7 +18,7 @@
             variant="outline-success"
             id="MovieSelector"
             @click="setVisibility('visible')"
-            class="col-sm-12 movies-select-tap align-middle"
+            class="col-md-12 movies-select-tap align-middle"
           >
             {{
               movies.select == []
@@ -36,11 +36,12 @@
     </b-container>
     <b-container>
       <MovieSelector
+        class="MovieSelector"
         @select="setMovieSelect"
         @close="setVisibility('hidden')"
         :visible="visible"
         :moviesChoices="choices"
-        style="margin-left: 12em; margin-top: 1em;"
+        style="margin-top: 1em;"
       />
     </b-container>
   </div>
@@ -163,6 +164,14 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 575px) {
+  .MovieSelector {
+    margin-left: 30em;
+  }
+}
+.MovieSelector {
+  margin-left: 12em;
+}
 .movies-select-tap {
   background-color: white;
   border-style: solid;

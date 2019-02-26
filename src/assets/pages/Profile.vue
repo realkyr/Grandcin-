@@ -2,7 +2,7 @@
   <div>
     <Navbar />
     <b-container
-      style="margin-top: 8em; padding: 5em;"
+      style="margin-top: 2em; padding: 5em;"
       class="border round border-warning bg-secondary text-warning"
     >
       <center>
@@ -23,8 +23,11 @@
               sm="6"
               md="5"
             >
-              <b-card :ref="ticket">
-                <h3>GrandCiné</h3>
+              <b-card :id="ticket" :ref="ticket">
+                <center>
+                  <img height="120px" src="../pics/logo.png" />
+                </center>
+                <br />
                 <b>🎞 Name : </b>{{ tickets[ticket].movie.title }}<br />
                 <b>🗓 Date : </b>{{ tickets[ticket].date }}<br />
                 <b>⌚ Show Time : </b>{{ tickets[ticket].time }}<br />
@@ -40,7 +43,11 @@
                   >
                     Print-Ticket
                   </b-button>
-                  <b-button variant="warning" style="margin: 10px;">
+                  <b-button
+                    @click="sendEmail"
+                    variant="warning"
+                    style="margin: 10px;"
+                  >
                     Send Ticket to E-mail
                   </b-button>
                   <br />
@@ -62,6 +69,8 @@ import Navbar from '../components/Navbar.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import { Printd } from 'printd'
+// import mailer from 'nodemailer'
 
 export default {
   async mounted() {
@@ -94,8 +103,43 @@ export default {
     }
   },
   methods: {
+    // sendEmail() {
+    //   var smtp = {
+    //     host: 'host.email.com', //  set to your host name or ip
+    //     port: 25, // 25, 465, 587 depend on your
+    //     secure: true, // use SSL
+    //     auth: {
+    //       user: '60070072@kmitl.ac.th', //  user account
+    //       pass: 'SMJa4OwZ' // user password
+    //     }
+    //   }
+    //   var smtpTransport = mailer.createTransport(smtp)
+
+    //   var mail = {
+    //     from: 'from@email.com', //  from email (option)
+    //     to: '60070119@kmitl.ac.th', //  to email (require)
+    //     subject: 'Subject Text', // subject
+    //     html: `<p>Test</p>` // email body
+    //   }
+    //   smtpTransport.sendMail(mail, function(error, response) {
+    //     smtpTransport.close()
+    //     if (error) {
+    //       //  error handler
+    //     } else {
+    //       //  success handler
+    //       console.log('send email success')
+    //     }
+    //   })
+    // },
     print(ticket) {
-      console.log(ticket)
+      const style = `
+
+      #${ticket} {
+        color: red;
+      }
+    `
+      const d = new Printd()
+      d.print(document.getElementById(ticket), style)
     }
   }
 }
@@ -108,5 +152,11 @@ export default {
   border-top-width: 1px;
   border-bottom: solid;
   border-bottom-width: 1px;
+}
+.card {
+  background-color: black;
+}
+.card:hover {
+  background-color: white;
 }
 </style>

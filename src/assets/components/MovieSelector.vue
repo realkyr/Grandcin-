@@ -91,6 +91,11 @@ export default {
     max-width: 350px;
   }
 }
+@media only screen and (max-width: 575px) {
+  .movie-selector {
+    max-width: 250px;
+  }
+}
 
 .movie-selector {
   position: absolute;

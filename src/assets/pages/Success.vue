@@ -30,7 +30,7 @@
               class="border round border-warning bg-secondary text-warning"
             >
               <center>
-                <h1>รอบที่เลือก</h1>
+                <h1>ชำระเงินสำเร็จ</h1>
               </center>
               <br />
               <center>
@@ -67,23 +67,23 @@
                 v-for="seat in $store.state.bookingInfo.seats"
                 >{{ seat }}</span
               >
-              <br /><br />
+              <br />
+              <br />
               <b class="h4">
                 💰 ราคารวม :
               </b>
               {{ $store.state.bookingInfo.price }}
               <br />
               <br />
-              <br />
               <center>
                 <b-button
-                  variant="primary"
-                  style="margin-left: 50px; margin-right: 50px;"
+                  @click="finish"
+                  variant="success"
+                  style="margin-right: 2px;"
                 >
-                  Paypal
-                </b-button>
-                <b-button variant="danger" to="/credit">
-                  Credit/Debit Card
+                  Finish
+                  <!-- this is just dummy use after payment,
+                        you can copy this function to use at another page -->
                 </b-button>
                 <br />
                 <br />

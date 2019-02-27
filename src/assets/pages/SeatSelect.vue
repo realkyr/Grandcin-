@@ -56,6 +56,7 @@
                   />
                   {{ alpha[i - 1] }}
                 </div>
+                <div class="front text-center text-white">SCREEN</div>
               </div>
             </div>
           </div>
@@ -279,5 +280,13 @@ export default {
   border-radius: 10px;
   height: 54px;
   max-width: 100%;
+}
+.front {
+  display: block;
+  border-radius: 10px;
+  margin-top: 50px;
+  width: 700px;
+  height: 30px;
+  background-color: black;
 }
 </style>

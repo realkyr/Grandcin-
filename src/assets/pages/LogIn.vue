@@ -3,7 +3,7 @@
     <Navbar />
     <b-container>
       <b-row>
-        <b-col cols="12" sm="6" md="5">
+        <b-col cols="12">
           <LogInForm @authChage="$router.push({ path: '/' })" />
           <!-- on authChange is event listener 
             there is a function in login form component will trigger this
